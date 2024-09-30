@@ -1,0 +1,3 @@
+\contentsline {chapter}{\numberline {第一章\hspace {.3em}}Entropy, Relative Entropy, Mutual Information}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Entropy}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Relative Entropy and Mutual Information}{3}{section.1.2}%

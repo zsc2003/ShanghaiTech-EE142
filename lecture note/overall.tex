@@ -1,0 +1,56 @@
+\documentclass[12pt, a4paper, oneside]{ctexbook}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, diagbox, color}
+
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+
+\title{{\Huge{\textbf{EE142 \\ Fundamentals of Information Theory}}}\\Lecture notes}
+\author{Zhou Shouchen}
+\date{\today}
+\linespread{1.4}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{example}[theorem]{例}
+\newtheorem{proposition}[theorem]{命题}
+
+\begin{document}
+
+\maketitle
+
+% -------------------- foreword --------------------
+\iffalse
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\begin{center}
+    \Huge\textbf{前言}
+\end{center}~\
+
+这是笔记的前言部分.
+~\\
+\begin{flushright}
+    \begin{tabular}{c}
+        Zhou Shouchen\\
+        \today
+    \end{tabular}
+\end{flushright}
+\newpage
+\fi
+% -------------------- foreword --------------------
+
+
+% -------------------- chapters --------------------
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\input{chapters/chapter1/chapter1.tex}
+\input{chapters/chapter2/chapter2.tex}
+% -------------------- chapters --------------------
+
+\end{document}

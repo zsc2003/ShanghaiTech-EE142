@@ -1,0 +1,84 @@
+\section{Entropy}
+
+\begin{definition}
+事件$x$发生的概率为$p(x)$, 则$x$的信息量为$\log\dfrac{1}{p(x)}$.
+\end{definition}
+
+\begin{definition}
+离散型随机变量$X$的熵 (entropy) $H(X)$:
+\begin{align*}
+    H(X)&= -\sum_{x\in\mathcal{X}}p(x)\log p(x) \\
+        &= \sum_{x\in\mathcal{X}}p(x)\log\dfrac{1}{p(x)} \\
+        &= \mathbb{E}\left[\log\dfrac{1}{p(x)}\right]
+\end{align*}
+\end{definition}
+
+$H(X)$物理意义: 事件发生的概率$p(x)$, 信息量为 $\log\dfrac{1}{p(x)}$. 所有事件发生的期望信息量.
+
+\begin{proposition}
+$H(X)\geq 0$, 当且仅当$p(x)=1$时, $H(X)=0$.\\
+$p(x)=1$时, 事件是确定的(deterministic), 信息量为0.
+\end{proposition}
+
+\begin{definition}
+$X\in \mathcal{X}, Y\in\mathcal{Y}; |\mathcal{X}|,|\mathcal{Y}|<\infty$(离散型随机变量). \\
+$X$和$Y$的联合熵 (joint entropy) $H(X,Y)$:
+\begin{align*}
+    H(X,Y)&= -\sum_{x\in\mathcal{X}}\sum_{y\in\mathcal{Y}}p(x,y)\log p(x,y) \\
+        &= \sum_{x\in\mathcal{X}}\sum_{y\in\mathcal{Y}}p(x,y)\log\dfrac{1}{p(x,y)} \\
+        &= \mathbb{E}\left[\log\dfrac{1}{p(x,y)}\right]
+\end{align*}
+\end{definition}
+
+\begin{proposition}
+$0\leq H(X)\leq \log|\mathcal{X}|$.\\
+$X$为冲激函数时取$0$ (deterministic), $X$为均匀分布时取$\log|\mathcal{X}|$.
+\end{proposition}
+
+
+\begin{definition}
+条件熵 (conditional entropy) $H(Y|X)$:
+\begin{align*}
+    H(Y|X)&= \textcolor{red}{\sum_{x\in\mathcal{X}}p(x)H(Y|X=x)} \\
+        &= -\sum_{x\in\mathcal{X}}p(x)\sum_{y\in\mathcal{Y}}p(y|x)\log p(y|x) \\
+        &= \textcolor{red}{\sum_{x\in\mathcal{X}}\sum_{y\in\mathcal{Y}}p(x,y)\log\dfrac{1}{p(y|x)}} \\
+        &= \mathbb{E}\left[\log\dfrac{1}{p(y|x)}\right]
+\end{align*}
+\end{definition}
+
+\begin{theorem}
+    chain rule 剥洋葱:
+    $$H(X,Y)=H(X)+H(Y|X)$$
+\end{theorem}
+
+
+\begin{example}
+Find $H(X), H(Y), H(X|Y), H(X,Y)$.
+\begin{table*}[!htbp]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline \diagbox{$Y$}{$X$} & $1$ & $2$ & $3$ & $4$  \\
+        \hline $1$ & $\frac{1}{8}$ & $\frac{1}{16}$ & $\frac{1}{32}$ & $\frac{1}{32}$ \\
+        \hline $2$ & $\frac{1}{32}$ & $\frac{1}{32}$ & $\frac{1}{32}$ & $\frac{1}{32}$ \\
+        \hline $3$ & $\frac{1}{16}$ & $\frac{1}{16}$ & $\frac{1}{16}$ & $\frac{1}{16}$ \\
+        \hline $4$ & $\frac{1}{4}$  & 0 & 0 & 0 \\
+        \hline
+    \end{tabular}
+\end{table*}
+
+$$H(X)=H\left(\dfrac{1}{2},\dfrac{1}{4},\dfrac{1}{8},\dfrac{1}{8}\right)=\dfrac{7}{4}\text{bits}$$
+$$H(Y)=H\left(\dfrac{1}{4},\dfrac{1}{4},\dfrac{1}{4},\dfrac{1}{4}\right)=\log 4 = 2\text{bits} \ (\textcolor{red}{uniform\ distribution})$$
+\begin{align*}
+H(X|Y)&= \sum_{y\in\mathcal{Y}}p(y)H(X|Y=y) \\
+    &= \dfrac{1}{4}\left(H\left(\dfrac{1}{2},\dfrac{1}{4},\dfrac{1}{8},\dfrac{1}{8}\right)+H\left(\dfrac{1}{4},\dfrac{1}{2},\dfrac{1}{8},\dfrac{1}{8}\right)+H\left(\dfrac{1}{4},\dfrac{1}{4},\dfrac{1}{4},\dfrac{1}{4}\right)+H\left(1\right)\right) \\
+    &= \dfrac{11}{8} \text{bits}
+\end{align*}
+$H(X,Y)=H(Y)+H(X|Y)=2+\dfrac{11}{8}=\dfrac{27}{8}$ bits.
+\end{example}
+
+\begin{proposition}
+\begin{align*}
+    H(X,Y) &= H(X) + H(Y) \text{\ \ \ ($X\perp Y$)} \\
+    H(X,Y) &= H(X) \text{\ \ \ \ \ \ \ \ \ \ \ \ \ \ ($Y=X$)}
+\end{align*}
+\end{proposition}

@@ -4,7 +4,20 @@
 
 \textcolor{blue}{Solution}
 
+Suppose that there exist a $x_1$ with $p(x_1)>0$, there are more than $1$ possible values of $y$ with $p(x_1, y)>0$. \\
+Suppose that they are
+$$p(x_1,y_1),\cdots,p(x_1,y_k), k\geq 2$$
 
-
+Since there are more than $1$ possible values of $y$ with $p(x, y)>0$, we have
+$$p(y_i|x_1)=\dfrac{p(x_1,y_i)}{p(x_1)}\in (0,1), i=1,\cdots,k$$
+i.e. $\log\dfrac{1}{p(x_1,y_i)}>0$.\\
+So
+\begin{align*}
+H(Y|X) &= \sum_{x,y}p(x,y)\log\dfrac{1}{p(y|x)} \\
+&\geq \sum_{i=1}^k p(x_1,y_i)\log\dfrac{1}{p(y_i|x_1)} \\
+&> 0
+\end{align*}
+Which is a contradiction with $H(Y|X)=0$.\\
+So for all $x$ with $p(x)>0$, there is only one possible value of $y$ with $p(x, y)>0$.
 
 \newpage

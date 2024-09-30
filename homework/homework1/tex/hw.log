@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.3.6)  30 SEP 2024 11:41
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.3.6)  1 OCT 2024 00:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -664,7 +664,7 @@ LaTeX Font Info:    No file TUptm.fd. on input line 126.
 LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
 (Font)              using `TU/lmr/m/n' instead on input line 126.
 
-No file hw.aux.
+(./hw.aux)
 \openout1 = `hw.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 126.
@@ -751,10 +751,8 @@ Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Link coloring ON on input line 126.
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 \c@lstlisting=\count353
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -824,23 +822,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--22
 
  []
 
-[5]) (./problems/p5.tex)
-
-Package caption Warning: Unused \captionsetup[figure] on input line 21.
-See the caption package documentation for explanation.
-
-[6] (./hw.aux)
+[5]
+File: ../venn.jpg Graphic file (type bmp)
+<../venn.jpg>
+ [6]) (./problems/p5.tex) [7] (./hw.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 20082 strings out of 476683
- 408765 string characters out of 5807576
- 1849012 words of memory out of 5000000
- 39970 multiletter control sequences out of 15000+600000
+ 20095 strings out of 476683
+ 408909 string characters out of 5807576
+ 1858012 words of memory out of 5000000
+ 39977 multiletter control sequences out of 15000+600000
  528362 words of font info for 110 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
- 89i,16n,97p,337b,338s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,16n,97p,337b,346s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on hw.pdf (6 pages).
+Output written on hw.pdf (7 pages).

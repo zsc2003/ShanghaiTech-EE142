@@ -10,15 +10,34 @@
 
 \textcolor{blue}{Solution}
 
-(a)
+(a) <1>.
+\begin{align*}
+H(Z|X) &= \sum_{x,z}P(X=x,Z=z)\log \dfrac{1}{p(Z=z|X=x)} \\
+&= \sum_{x,z}P(X=x,Y=z-x)\log \dfrac{1}{p(Y=z-x|X=x)} \\
+&= \sum_{y,z}P(X=x,Y=y)\log \dfrac{1}{p(Y=y|X=x)} \text{\ \ \ (Let $y=z-x$)} \\
+&= H(Y|X)
+\end{align*}
 
+<2>. Since $X\perp Y$, so $H(Y|X)=H(Y)$. And from <1>, we have known that $H(Z|X)=H(Y|X)$. So
+$$H(Z) \geq H(Z|X) = H(Y|X) = H(Y)$$
 
+Similarly, we can get $H(Z|Y)=H(X|Y), H(X|Y)=H(X)$, so
+$$ H(Z) \geq H(Z|Y) = H(X|Y) = H(X)$$
 
-(b)
+So above all, we have proved that
+$$H(Z|X)=H(Y|X), H(Z) \geq H(X), H(Z) \geq H(Y)$$
 
+(b) We can let $Y=-X$, then $Z=0$, which is deterministic. So $H(Z)=0$. \\
+So for any non-deterministic random variables $X$ and $Y$, we have $H(X)>H(Z)$ and $H(Y)>H(Z)$.
 
-
-(c)
-
-
-
+(c) From the chain rule of entropy, we have
+\begin{align*}
+H(X,Y,Z) &= H(X,Y) + H(Z|X,Y) = H(X,Y) \\
+H(X,Y,Z) &= H(Z) + H(X,Y|Z)
+\end{align*}
+i.e.
+$$H(Z)=H(X,Y)-H(X,Y|Z)\leq H(X,Y)$$
+When $H(X,Y|Z)=0$ takes the equal. And since $H(X,Y)=H(X)+H(Y)-I(X;Y)\leq H(X)+H(Y)$, when $I(X;Y)=0$ takes the equal. So
+$$H(Z)\leq H(X,Y) \leq H(X)+H(Y)$$
+If and only if when $H(X,Y|Z)=0,I(X;Y)=0$, $H(Z)=H(X)+H(Y)$.\\
+So above all, when $X\perp Y$ and $(X,Y)$ is deterministic when given $Z$, we have $H(Z)=H(X)+H(Y)$.

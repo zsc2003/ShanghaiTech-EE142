@@ -9,17 +9,28 @@ $$\sum_{n=0}^{\infty} r^n=\frac{1}{1-r}, \quad \sum_{n=0}^{\infty} n r^n=\frac{r
 
 \textcolor{blue}{Solution}
 
-(a)
+(a) Let $p=\dfrac{1}{2}, q=1-p=\dfrac{1}{2}$, then $X\sim FS(p)$. i.e. $P(X=k)=q^{k-1}p=\dfrac{1}{2^k}, k=1,2,\ldots$ \\
+Then
+\begin{align*}
+H(X) &= -\sum_{k=1}^{\infty} P(X=k)\log P(X=k) \\
+&= -\sum_{k=1}^{\infty} \dfrac{1}{2^k}\log \dfrac{1}{2^k} \\
+&= -\sum_{k=1}^{\infty} \dfrac{1}{2^k}(-k) \\
+&= \sum_{k=1}^{\infty} k\left(\dfrac{1}{2}\right)^k \\
+&= \sum_{k=0}^{\infty} k\left(\dfrac{1}{2}\right)^k \\
+&= \dfrac{\frac{1}{2}}{\left(1-\frac{1}{2}\right)^2} \\
+&= 2 \text{\ \ bits}
+\end{align*}
 
+(b) We can ask the questions iteratively. Let $S=\Phi$ initially.\\
+Then for the $i$-th iteration, Let $S\leftarrow S\cup \{i\}$, $i=1,2,\ldots$. \\
+Then let $T$ be the number of questions we need to ask to determine $X$. \\
+Then $P(T=t)=\dfrac{1}{2^t}, t=1,2,\ldots$ \\
+So
+$$\mathbb{E}(T) = \sum_{t=1}^{\infty} t\cdot\dfrac{1}{2^t} = 2$$
 
-
-
-(b)
-
-
-
-
-
+And we can find that with this method, $\mathbb{E}(T)=H(X)$.\\
+And there might(or might not) exist other optimal ways to ask the questions. If it exists, with the more efficient method, the expected number of questions required to determine $X$ : $T'$ has
+$$\mathbb{E}(T')\leq H(X)$$
 
 
 \newpage

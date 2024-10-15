@@ -1,5 +1,18 @@
 \section{Entropy}
 
+信息熵公式推导满足的条件: \\
+1. $H(X)$ 关于 $\vec{p}$ 是连续的. \\
+2. $H(X)$ 在 deterministic distribution $p(x)=1$ 时取得最小值 $0$. \\
+3. $H(X)$ 有可拆分性: 如下图按逻辑拆分
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{./figures/chapter1/entropy_deduction.png}
+\end{figure}
+$$H(X)=H\left(\dfrac{1}{2},\dfrac{1}{3},\dfrac{1}{6}\right)=H\left(\dfrac{1}{2},\dfrac{1}{2}\right)+\dfrac{1}{2}H\left(\dfrac{2}{3},\dfrac{1}{3}\right)$$
+最后能够推导出$H(X)$的唯一形式为
+$$H(X)=k\cdot \sum_{x\in\mathcal{X}}p(x)\log\dfrac{1}{p(x)}$$
+其中取$k=1$.
+
 \begin{definition}
 事件$x$发生的概率为$p(x)$, 则$x$的信息量为$\log\dfrac{1}{p(x)}$.
 \end{definition}
@@ -13,7 +26,8 @@
 \end{align*}
 \end{definition}
 
-$H(X)$物理意义: 事件发生的概率$p(x)$, 信息量为 $\log\dfrac{1}{p(x)}$. 所有事件发生的期望信息量.
+$H(X)$物理意义: $X=x$ 事件发生的概率$p(x)$, 信息量为 $\log\dfrac{1}{p(x)}$. \\
+$H(X)$: 所有事件发生的期望信息量.
 
 \begin{proposition}
 $H(X)\geq 0$, 当且仅当$p(x)=1$时, $H(X)=0$.\\
@@ -32,7 +46,16 @@ $X$和$Y$的联合熵 (joint entropy) $H(X,Y)$:
 
 \begin{proposition}
 $0\leq H(X)\leq \log|\mathcal{X}|$.\\
-$X$为冲激函数时取$0$ (deterministic), $X$为均匀分布时取$\log|\mathcal{X}|$.
+$X$为冲激函数时取$0$ (deterministic), $X$为均匀分布时取$\log|\mathcal{X}|$.\\
+prove 均匀分布时取得最大值 $\log|\mathcal{X}|$:\\
+Let $u(x)=\dfrac{1}{|\mathcal{X}|}$, then
+\begin{align*}
+D\left(p\|u\right) &= \sum_{x\in\mathcal{X}}p(x)\log\dfrac{p(x)}{u(x)} \\
+&= \sum_{x\in\mathcal{X}}p(x)\log|\mathcal{X}| - \sum_{x\in\mathcal{X}}p(x)\log\dfrac{1}{p(x)} \\
+&= \log|\mathcal{X}| - H(X) \\
+&\geq 0
+\end{align*}
+当且仅当$p(x)=u(x)$时等号成立, i.e. $H(X)$取得最大值 $\log|\mathcal{X}|$.
 \end{proposition}
 
 

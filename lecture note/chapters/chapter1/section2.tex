@@ -17,7 +17,7 @@ $$I(X;Y)=\sum_{x,y}p(x,y)\log\dfrac{p(x,y)}{p(x)p(y)}$$
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{./figures/entropy_mutual_imformation.png}
+    \includegraphics[width=0.83\textwidth]{./figures/chapter1/entropy_mutual_imformation.png}
 \end{figure}
 
 \begin{align*}
@@ -65,11 +65,10 @@ $I(X;Y)=D\left(p(x,y)\|p(x)p(y)\right)$
 \end{proposition}
 
 \begin{proposition}
-    1. $I(X;Y)\geq 0$;\\
-    2. $I(X;Y)\leq \min{H(X),H(Y)}$
+$$0\leq I(X;Y)\leq \min\{H(X),H(Y)\}$$
 \end{proposition}
 
-1. $I(X;Y)\geq 0$: 当且仅当$X$,$Y$独立时等号成立.
+1. $I(X;Y)\geq 0$: 当且仅当\textcolor{red}{$X$,$Y$独立时($X\perp Y$)}等号成立.
 \begin{align*}
 I(X;Y) &= \sum_{x,y}p(x,y)\log\dfrac{p(x,y)}{p(x)p(y)} \\
 &= D\left(p(x,y)\|p(x)p(y)\right) \geq 0
@@ -87,7 +86,7 @@ $$I(X;Y) = H(X) - H(X|Y) \leq H(X)$$
 如图 $H(X|Y)=0,H(Y|X)\neq 0$.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.45\textwidth]{./figures/conditional_entropy_0.png}
+    \includegraphics[width=0.45\textwidth]{./figures/chapter1/conditional_entropy_0.png}
 \end{figure}
 \end{proposition}
 
@@ -165,7 +164,7 @@ I(X;Y|Z) &> I(X;Y)
 
 \begin{example}
 $I(X;Y|Z)\leq I(X;Y)$
-Construct Markov Chain: $X\rightarrow Y\rightarrow Z$\\
+Construct Markov Chain: $X\rightarrow Y\rightarrow Z$
 \begin{align*}
 p(x,y,z) &= p(x)p(y|x)p(z|y) \\
 I(X;Y,Z) &= I(Y,Z;X) \\
@@ -176,7 +175,7 @@ Since $Z\perp X|Y\Rightarrow I(Z;X|Y)=0$\\
 So $I(Y;X)= I(Z;X) + I(Y;X|Z)\geq I(Y;X|Z)$\\
 所以$I(X;Y)\geq I(X;Y|Z)$
 \begin{align*}
-\text{proof  } Z\perp X|Y &\Rightarrow I(Z;X|Y)=0: \\
+\text{proof:  } Z\perp X|Y &\Rightarrow I(Z;X|Y)=0: \\
 I(Z;X|Y) &= H(Z|Y) - H(Z|X,Y) \\
 H(Z|X,Y) &= \sum_{x,y,z}p(x,y,z)\log\dfrac{1}{p(z|x,y)} \\
 &= \sum_{x,y,z}p(x,y,z)\log\dfrac{1}{p(z|y)}
@@ -186,8 +185,15 @@ H(Z|X,Y) &= \sum_{x,y,z}p(x,y,z)\log\dfrac{1}{p(z|x,y)} \\
 \end{align*}
 \end{example}
 
+\begin{proposition}
+$I(X;Y_1,\cdots,Y_n)=\sum\limits_{i=1}^nI(X;Y_i|Y_1,\cdots,Y_{i-1})$\\
+$I(X_1,\cdots,X_n;Y_1,\cdots,Y_n)$: 将上面的$X$替换成$X_1,\cdots,X_n$, 然后再展开.\\
+Specifically: When $(X_1,Y_1) \perp (X_2,Y_2) \perp \cdots \perp (X_n,Y_n)$, then
+$$I(X_1,\cdots,X_n;Y_1,\cdots,Y_n)=\sum\limits_{i=1}^{n}I(X_i;Y_i)$$
+\end{proposition}
 
-
+\begin{example}
+我们知道 $H(X)\geq H(X|Y)$, 但是 $H(X)$和 $H(X|Y=y)$的大小不确定. \\
 \begin{table*}[!htbp]
     \centering
     \begin{tabular}{c|cc}
@@ -197,3 +203,30 @@ H(Z|X,Y) &= \sum_{x,y,z}p(x,y,z)\log\dfrac{1}{p(z|x,y)} \\
         \hline
     \end{tabular}
 \end{table*}
+
+\begin{align*}
+H(X) &= H\left(\dfrac{1}{8},\dfrac{7}{8} \right)\in \left(0,\log|\mathcal{X}|\right) = (0,1) \\
+H(X|Y=0) &= H\left( 0,1 \right) = 0 \\
+H(X|Y=1) &= H\left( \dfrac{1}{2},\dfrac{1}{2} \right) = \log|\mathcal{X}| = 1
+\end{align*}
+
+\end{example}
+
+\begin{proposition}
+从条件熵的角度推导出 cross entropy. 如下图所示, 网络满足马尔可夫链:
+$$ Y\rightarrow X\rightarrow Z\to \hat{Y}$$
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{./figures/chapter1/cross_entropy.png}
+\end{figure}
+$$\min_{p(\hat{y},z)}\ \ H(\hat{Y}|Z)$$
+使网络确定到正确的答案.\\
+\begin{align*}
+H(\hat{Y}|Z) &= \sum_{\hat{y},z}p(\hat{y},z)\log\dfrac{1}{p(\hat{y}|z)} \\
+&= \sum_{x,y,z,\hat{y}}p(x,y,z,\hat{y})\log\dfrac{1}{p(\hat{y}|z)} \\
+&= \sum_{x,y}p(x,y)\textcolor{red}{p_{\theta}(z|x)p_{\phi}(\hat{y}|z)}\log\dfrac{1}{p(\hat{y}|z)} \text{\ \ \ (Monte\ Carlo\ sample $\rightarrow (x,y)$)}
+\end{align*}
+红色部分为网络 trainable的部分, 为了使网络确定到正确的答案, 需要最小化剩余的部分, i.e.
+$$\sum_{x,y}p(x,y)\log\dfrac{1}{p(\hat{y}|z)}$$
+Which is the cross entropy between $p(x,y)$ and $p(\hat{y}|z)$.
+\end{proposition}

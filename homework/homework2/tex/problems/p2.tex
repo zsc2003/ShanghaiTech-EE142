@@ -1,0 +1,41 @@
+\textcolor{blue}{Problem 2}
+
+2.25 Venn diagrams. There isn't really a notion of mutual information common to three random variables. Here is one attempt at a definition: Using Venn diagrams, we can see that the mutual information common to three random variables $X, Y$, and $Z$ can be defined by
+$$I(X ; Y ; Z)=I(X ; Y)-I(X ; Y \mid Z)$$
+This quantity is symmetric in $X, Y$, and $Z$, despite the preceding asymmetric definition. Unfortunately, $I(X ; Y ; Z)$ is not necessarily nonnegative. Find $X, Y$, and $Z$ such that $I(X ; Y ; Z)<0$, and prove the following two identities:
+
+(a) $I(X ; Y ; Z)=H(X, Y, Z)-H(X)-H(Y)-H(Z)+$ $I(X ; Y)+I(Y ; Z)+I(Z ; X)$
+
+(b) $I(X ; Y ; Z)=H(X, Y, Z)-H(X, Y)-H(Y, Z)-$ $H(Z, X)+H(X)+H(Y)+H(Z)$.
+
+The first identity can be understood using the Venn diagram analogy for entropy and mutual information. The second identity follows easily from the first.
+
+\textcolor{blue}{Solution}
+
+<1> Let $X,Y\stackrel{i.i.d.}{\sim}Bern\left(\dfrac{1}{2}\right), Z = X + Y$.
+
+Since $X\perp Y$, so $$I(X;Y)=0$$
+And
+$$I(X;Y|Z)=H(X|Z)-H(X|Y,Z)=H(X|Z)>0$$
+So
+$$I(X;Y;Z)=I(X;Y)-I(X;Y|Z)=-I(X;Y|Z)<0$$
+So above all, we have given an example that $I(X;Y;Z)<0$.
+
+<2> (a)
+\begin{align*}
+I(X;Y;Z) &= I(X;Y) - I(X;Y|Z) \\
+&= I(X;Y) - \left(I(X;Y,Z) - I(X;Z)\right) \text{\ \ \ \ (Chain Rule of Mutual Information)} \\
+&= I(X;Y) - \left(H(X) + H(Y,Z) - H(X,Y,Z)\right) + I(X;Z) \\
+&= H(X,Y,Z) - H(X) - H(Y,Z) + I(X;Y) + I(Z;X) \\
+&= H(X,Y,Z) - H(X) - \left(H(Y) + H(Z) - I(Y;Z)\right) + I(X;Y) + I(Z;X) \\
+&= H(X,Y,Z) - H(X) - H(Y) - H(Z) + I(X;Y) + I(Y;Z) + I(Z;X) \qed
+\end{align*}
+
+<2> (b)
+\begin{align*}
+I(X;Y;Z) &= I(X;Y) - H(X) - H(Y,Z) + H(X,Y,Z) + I(Z;X) \text{\ \ \ \ (from (a)'s third line)} \\
+&= \left(H(X)+H(Y)-H(X,Y)\right) - H(X) - H(Y, Z) + H(X,Y,Z) + \left(H(X)+H(Z)-H(Z,X)\right) \\
+&= H(X,Y,Z) - H(X,Y) - H(Y,Z) - H(Z,X) + H(X) + H(Y) + H(Z) \qed
+\end{align*}
+
+\newpage

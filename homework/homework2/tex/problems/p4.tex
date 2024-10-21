@@ -1,0 +1,51 @@
+\textcolor{blue}{Problem 4}
+
+4.33 Chain inequality. Let $X_1 \rightarrow X_2 \rightarrow X_3 \rightarrow X_4$ form a Markov chain. Show that
+    $$I\left(X_1 ; X_3\right)+I\left(X_2 ; X_4\right) \leq I\left(X_1 ; X_4\right)+I\left(X_2 ; X_3\right)$$
+
+\textcolor{blue}{Solution}
+
+From the chain rule of mutual information, we have
+\begin{align*}
+I\left(X_1,X_2;X_3\right) &= I\left(X_1;X_3\right) + I\left(X_2;X_3|X_1\right) \\
+&= I\left(X_2;X_3\right) + I\left(X_1;X_3|X_2\right) \\
+I\left(X_1,X_2;X_4\right) &= I\left(X_1;X_4\right) + I\left(X_2;X_4|X_1\right) \\
+&= I\left(X_2;X_4\right) + I\left(X_1;X_4|X_2\right) \\
+I\left(X_3,X_4;X_2|X_1\right) &= I\left(X_3;X_2|X_1\right) + I\left(X_4;X_2|X_1,X_3\right) \\
+&= I\left(X_4;X_2|X_1\right) + I\left(X_3;X_2|X_1,X_4\right)
+\end{align*}
+
+From the property of Markov chain, we have
+\begin{align*}
+I\left(X_1;X_3|X_2\right) &= 0 \\
+I\left(X_1;X_4|X_2\right) &= 0 \\
+I\left(X_2;X_4|X_1,X_3\right) &= 0
+\end{align*}
+
+So we have
+\begin{equation}
+I\left(X_1;X_3\right) - I\left(X_2;X_3\right) = -I\left(X_2;X_3|X_1\right)
+\label{eq:1}
+\end{equation}
+\begin{equation}
+I\left(X_2;X_4\right) - I\left(X_1;X_4\right) = I\left(X_2;X_4|X_1\right)
+\label{eq:2}
+\end{equation}
+\begin{equation}
+I\left(X_3;X_2|X_1\right) - I\left(X_4;X_2|X_1\right) = I\left(X_2;X_3|X_1,X_4\right)
+\label{eq:3}
+\end{equation}
+
+So we have
+\begin{align*}
+&\ \ \ \ I\left(X_1;X_3\right) + I\left(X_2;X_4\right) - I\left(X_1;X_4\right) - I\left(X_2;X_3\right) \\
+&= \left[I\left(X_1;X_3\right) - I\left(X_2;X_3\right) \right] + \left[I\left(X_2;X_4\right) - I\left(X_1;X_4\right)\right] \\
+&= I\left(X_2;X_4|X_1\right) - I\left(X_2;X_3|X_1\right) \text{\ \ \ \ \ \ \ \ \ \ (from (\ref{eq:1}) and (\ref{eq:2}))} \\
+&= -I\left(X_2;X_3|X_1,X_4\right) \text{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (from (\ref{eq:3}))} \\
+&\leq 0 \text{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ (property of mutual information)}
+\end{align*}
+
+So above all, we have proved that
+$$I\left(X_1 ; X_3\right)+I\left(X_2 ; X_4\right) \leq I\left(X_1 ; X_4\right)+I\left(X_2 ; X_3\right)$$
+
+\newpage

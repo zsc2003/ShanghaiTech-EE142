@@ -1,0 +1,25 @@
+\textcolor{blue}{Problem 6}
+
+5.6 Bad codes. Which of these codes cannot be Huffman codes for
+any probability assignment?
+
+(a) $\{0, 10, 11\}$
+
+(b) $\{ 00, 01, 10, 110\}$
+
+(c) $\{01,10\}$
+
+\textcolor{blue}{Solution}
+
+(a) The code could be a Huffman code. For example
+$$p(x_1)=0.7,p(x_2)=0.2,p(x_3)=0.1$$
+Then the Huffman code could be:
+$$c(x_1)=0,c(x_2)=10,c(x_3)=11$$
+
+(b) The code is a bad code. The codeword with longest length should not be single, at least $2$ variables' codewords should be the longest, otherwise, the longest codeword could be shorten.
+
+i.e. The codeword $110$ could be shorten to $11$. \\
+
+(c) The two codewords' first bit and the second bit are all different, so we could shorten the codewords with their first bit, and the property would remain, i.e. it is still a prefix-free code.
+
+i.e. The codewords $\{01,10\}$ could be shorten to $\{0,1\}$.

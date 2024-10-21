@@ -1,0 +1,25 @@
+\textcolor{blue}{Problem 1}
+
+2.16 Bottleneck. Suppose that a (nonstationary) Markov chain starts in one of $n$ states, necks down to $k<n$ states, and then fans back to $m>k$ states. Thus, $X_1 \rightarrow X_2 \rightarrow X_3$, that is $p\left(x_1, x_2, x_3\right)=p\left(x_1\right) p\left(x_2 \mid x_1\right) p\left(x_3 \mid x_2\right)$, for all $x_1 \in\{1,2, \ldots, n\}, x_2 \in\{1,2, \ldots, k\}, x_3 \in\{1,2, \ldots, m\}$.
+
+(a) Show that the dependence of $X_1$ and $X_3$ is limited by the bottleneck by proving that $I\left(X_1 ; X_3\right) \leq \log k$.
+
+(b) Evaluate $I\left(X_1 ; X_3\right)$ for $k=1$, and conclude that no dependence can survive such a bottleneck.
+
+\textcolor{blue}{Solution}
+
+(a) Since $X_1 \rightarrow X_2 \rightarrow X_3$ form the Markov chain, so we can get that:
+\begin{align*}
+I(X_1;X_3) &\leq I(X_1;X_2) \text{\ \ \ (Data Processing Inequality)} \\
+&\leq H(X_2) \text{\ \ \ \ \ \ \ (property of mutual information)} \\
+&\leq \log k \text{\ \ \ \ \ \ \ \ \ \ ($|X_2|=k$)} \qed
+\end{align*}
+
+(b) Since $k=1$, from (a), we can get that
+$$I(X_1;X_3) \leq \log 1 = 0$$
+And from the property of mutual information, we can get that
+$$I(X_1;X_3) \geq 0$$
+So we can conclude that $I(X_1;X_3) = 0$.\\
+Which means that no dependence can survive such a bottleneck.
+
+\newpage

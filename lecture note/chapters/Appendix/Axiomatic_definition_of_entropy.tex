@@ -1,0 +1,93 @@
+\section{Axiomatic definition of entropy}
+\label{sec:Axiomatic_definition_of_entropy}
+熵的公理定义
+
+If we assume certain axioms for our measure of information, we will be forced to use a logarithmic measure such as entropy. Shannon used this to justify his initial definition of entropy.
+
+If a sequence of symmetric functions $H_m\left(p_1, p_2, \ldots, p_m\right)$ satisfies the following properties: \\
+1. Normalization: $H_2\left(\dfrac{1}{2}, \dfrac{1}{2}\right)=1$ \\
+2. Continuity: $H_2(p, 1-p)$ is a continuous function of $p$ \\
+3. Grouping: $H_m\left(p_1, p_2, \ldots, p_m\right)=H_{m-1}\left(p_1+p_2, p_3, \ldots, p_m\right)+$ $\left(p_1+p_2\right) H_2\left(\dfrac{p_1}{p_1+p_2}, \dfrac{p_2}{p_1+p_2}\right)$
+
+prove that $H_m$ must be of the form
+$$H_m\left(p_1, p_2, \ldots, p_m\right)=-\sum_{i=1}^m p_i \log p_i, \quad m=2,3, \ldots$$
+
+\textcolor{blue}{Solution}
+
+Notations:
+\begin{align*}
+f(m) &\triangleq H_m\left(\dfrac{1}{m}, \dfrac{1}{m}, \ldots, \dfrac{1}{m}\right) \\
+S_k &\triangleq \sum_{i=1}^k p_i \quad k=1,2,\ldots,m
+\end{align*}
+
+From the grouping property, we can get its extension:
+\begin{align*}
+&\quad H_m\left(p_1,p_2, p_3, \ldots, p_m\right) \\
+&= H_{m-1}\left(S_2, p_3, \ldots, p_m\right)+S_2 H_2\left(\dfrac{p_1}{S_2}, \dfrac{p_2}{S_2}\right) \\
+&= H_{m-2}\left(S_3, p_4, \ldots, p_m\right)+S_3 H_2\left(\dfrac{p_1+p_2}{S_3}, \dfrac{p_3}{S_3}\right)+S_2 H_2\left(\dfrac{p_1}{S_2}, \dfrac{p_2}{S_2}\right) \\
+&= \ldots \\
+&= \textcolor{blue}{H_{m-(k-1)}(S_k, p_{k+1}, \ldots, p_m)+\sum_{i=2}^k S_iH_2\left(\dfrac{S_{i-1}}{S_i}, \dfrac{p_i}{S_i}\right)} \\
+&= \textcolor{blue}{H_{m-(k-1)}\left(S_{k}, p_{k+1}, \ldots, p_m\right) + S_kH_k\left(\dfrac{p_1}{S_k}, \dfrac{p_2}{S_k}, \ldots, \dfrac{p_{k}}{S_k}\right)}
+\end{align*}
+The last equality(\textcolor{blue}{blue part}) can be obtained by expanding $H_k\left(\dfrac{p_1}{S_k}, \dfrac{p_2}{S_k}, \ldots, \dfrac{p_{k}}{S_k}\right)$.
+
+And using this, we can get that
+\begin{align*}
+f(mn) &= H_{mn}\left(\dfrac{1}{mn}, \dfrac{1}{mn}, \ldots, \dfrac{1}{mn}\right) \\
+&= H_{mn-(n-1)}\left(S_n, \dfrac{1}{mn}, \ldots, \dfrac{1}{mn}\right)+S_n H_n\left(\dfrac{1}{n}, \dfrac{1}{n}, \ldots, \dfrac{1}{n}\right) \\
+&= H_{mn-2(n-1)}\left(S_n, S_n, \dfrac{1}{mn}, \ldots, \dfrac{1}{mn}\right)+2 S_n H_n\left(\dfrac{1}{n}, \dfrac{1}{n}, \ldots, \dfrac{1}{n}\right) \\
+&= \ldots \\
+&= H_{mn-m(n-1)}\left(S_n, S_n, \ldots, S_n\right)+m S_n H_n\left(\dfrac{1}{n}, \dfrac{1}{n}, \ldots, \dfrac{1}{n}\right) \\
+&= H_m\left(\dfrac{1}{m}, \ldots, \dfrac{1}{m}\right) + m \dfrac{1}{m} H_n\left(\dfrac{1}{n}, \dfrac{1}{n}, \ldots, \dfrac{1}{n}\right) \\
+&= f(m) + f(n)
+\end{align*}
+
+And since we have the Continuity property, i.e. $H_2(p, 1-p)$ is a continuous function of $p$, from the property and provement of Cauchy function, we could get that
+$$f(m) = \log_a m$$
+
+And from the Normalization property, we have
+$$f(2) = 1$$
+So we can get that $a=2$.
+
+So above all, we have proved that
+$$\textcolor{blue}{f(m)=H_m\left(\dfrac{1}{m}, \dfrac{1}{m}, \ldots, \dfrac{1}{m}\right)= \log_2 m}$$
+
+And then prove $H_2(p,1-p) = -p\log_2p - (1-p)\log_2(1-p)$: \\
+1. When $p$ is rational, suppose $p = \dfrac{r}{s}$, where $r,s$ are integers, $s>1,0\leq r\leq s$, $\gcd(r,s)=1$. Then from the Grouping property and its extension, we have:
+\begin{align*}
+f(s) &= H_s\left(\dfrac{1}{s},\ldots,\dfrac{1}{s}\right) = H_{s}\left(\underbrace{\dfrac{1}{s},\ldots,\dfrac{1}{s}}_r,\underbrace{\dfrac{1}{s},\ldots,\dfrac{1}{s}}_{s-r}\right) \\
+&= H_{s-(r-1)}\left(\dfrac{r}{s},\underbrace{\dfrac{1}{s},\ldots,\dfrac{1}{s}}_{s-r}\right)+\dfrac{r}{s}H_r\left(\dfrac{1}{r},\ldots,\dfrac{1}{r}\right) \\
+&= H_{s-(r-1)-(s-1)}\left(\dfrac{r}{s},\dfrac{s-r}{s}\right) + \dfrac{s-r}{s}H_{s-r}\left(\dfrac{1}{s-r},\ldots,\dfrac{1}{s-r}\right) + \dfrac{r}{s}H_r\left(\dfrac{1}{r},\ldots,\dfrac{1}{r}\right) \\
+&= H_2(\dfrac{r}{s},\dfrac{s-r}{s}) + \dfrac{s-r}{s}f(s-r) + \dfrac{r}{s}f(r)
+\end{align*}
+
+And since $p=\dfrac{r}{s}$, so we can get that
+\begin{align*}
+H_2(p,1-p) &= H_2(\dfrac{r}{s},\dfrac{s-r}{s}) \\
+&= f(s) -\dfrac{s-r}{s}f(s-r) - \dfrac{r}{s}f(r) \\
+&= \log_2 s - (1-p)\log_2\left(s(1-p)\right) - p\log_2(sp) \\
+&= -p\log_2p - (1-p)\log_2(1-p)
+\end{align*}
+
+2. When $p$ is irrational, since we have the Continuity property, so we can also get that
+$$H_2(p,1-p) = -p\log_2p - (1-p)\log_2(1-p)$$
+
+So above all, we have prove that $\forall p\in[0,1]$, we have
+$$\textcolor{blue}{H_2(p,1-p) = -p\log_2p - (1-p)\log_2(1-p)}$$
+
+Then we use the induction to prove that, suppose that
+$$H_k(p_1, p_2, \ldots, p_k)=-\sum_{i=1}^k p_i \log p_i, \forall k=1,2,\ldots,m$$
+Then for $k=m+1$, we have
+\begin{align*}
+H_k(p_1, p_2, \ldots, p_k) &= H_{m+1}(p_1, p_2, \ldots, p_{m+1}) \\
+&= H_{m}(p_1+p_2, p_3, \ldots, p_{m+1}) + (p_1+p_2)H_2\left(\dfrac{p_1}{p_1+p_2}, \dfrac{p_2}{p_1+p_2}\right) \\
+&= \left(-(p_1+p_2)\log(p_1+p_2)-\sum_{i=3}^{m+1}p_i\log p_i\right) - (p_1+p_2)\left(\dfrac{p_1}{p_1+p_2}\log\dfrac{p_1}{p_1+p_2} + \dfrac{p_2}{p_1+p_2}\log\dfrac{p_2}{p_1+p_2}\right) \\
+&= -(p_1+p_2)\log(p_1+p_2)-\sum_{i=3}^{m+1}p_i\log p_i - p_1\log p_1 - p_2\log p_2 + (p_1+p_2)(\dfrac{p_1}{p_1+p_2}+\dfrac{p_2}{p_1+p_2})\log(p_1+p_2) \\
+&= -\sum_{i=1}^{m+1}p_i\log p_i \\
+&= -\sum_{i=1}^k p_i \log p_i
+\end{align*}
+So we have proved that $\forall m$, we have
+$$H_m(p_1,\ldots,p_m)=-\sum_{i=1}^mp_i\log p_i.$$
+
+So above all, we have proved that \footnote{The proof above has referenced from A Rényi.Wahrscheinlichkeitsrechnung, mit einem Anhang über Informationstheorie. Veb Deutscher Verlag der Wissenschaften, Berlin, 1962.}
+$$\textcolor{blue}{H_m\left(p_1, p_2, \ldots, p_m\right)=-\sum_{i=1}^m p_i \log p_i, \quad m=2,3, \ldots}$$

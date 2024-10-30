@@ -1,0 +1,55 @@
+\textcolor{blue}{Problem 4}
+
+3.1 Markov's inequality and Chebyshev's inequality
+
+(a) (Markov's inequality)\quad For any nonnegative random variable $X$ and any $t>0$, show that
+$$\Pr\left\{X\geq t\right\}\leq\dfrac{EX}t$$
+Exhibit a random variable that achieves this inequality with equality.
+
+(b) (Chebyshev's inequality)\quad Let $Y$ be a random variable with mean $\mu$ and variance $\sigma^2.$ By letting $X=(Y-\mu)^2$, show that for any $\epsilon>0$,
+$$\Pr\left\{|Y-\mu|>\epsilon\right\}\leq\dfrac{\sigma^2}{\epsilon^2}.$$
+
+(c) (Weak law of large numbers)\quad Let $Z_1,Z_2,\ldots,Z_n$ be a sequence of i.i.d. random variables with mean $\mu$ and variance $\sigma^2$. Let $\overline{Z}_n=\dfrac1n\sum\limits_{i=1}^nZ_i$ be the sample mean. Show that
+$$\Pr\left\{\left|\overline{Z}_n-\mu\right|>\epsilon\right\}\leq\dfrac{\sigma^2}{n\epsilon^2}.$$
+Thus, Pr $\left\{\left|\overline{Z}_n-\mu\right|>\epsilon\right\}\to0$ as $n\to\infty.$ This is known as the weak law of large numbers.
+
+\textcolor{blue}{Solution}
+
+(a)
+\begin{align*}
+\Pr\left\{X\geq t\right\} &= \int_{t}^{+\infty} p(x) dx \\
+&\leq \int_{t}^{+\infty} \dfrac{x}{t} p(x) dx \text{\quad\quad\ \ ($x\geq t$, since x integral from $t$)} \\
+&= \dfrac{1}{t} \int_{t}^{+\infty} x p(x) dx \\
+&\leq \dfrac{1}{t} \int_{0}^{+\infty} x p(x) dx \text{\quad\quad($x,p(x)\geq 0$)} \\
+&= \dfrac{1}{t} \mathbb{E}[X] \text{\quad\quad\quad\quad\quad\quad(definition of expectation, and $X\geq 0$)}
+\end{align*}
+
+For a fixed $t$, to make the inequality to be an equality, we set $X$ to be discrete random variable.
+Let $X=\left\{\begin{array}{ll}t & \text{w.p.\ \ } \theta \\ 0 & \text{w.p.\ \ } 1-\theta \end{array}\right.$, where $\theta\in[0,1]$.
+
+Then, $\mathbb{E}[X]=\theta t$ and $\Pr\left\{X\geq t\right\}=\Pr\left\{X=t\right\}=\theta$.
+
+In this case, we have $\Pr\left\{X\geq t\right\}= \dfrac{\mathbb{E}[X]}{t}$.
+
+(b) From the Markov inequality, we have
+$$\Pr\left\{X\geq \epsilon^2\right\}\leq\dfrac{\mathbb{E}[X]}{\epsilon^2}$$
+Let $X=(Y-\mu)^2$, then
+$$\Pr\left\{(Y-\mu)^2\geq \epsilon^2\right\}\leq\dfrac{\mathbb{E}[(Y-\mu)^2]}{\epsilon^2}$$
+From the definition of variance, we have
+$$\sigma^2=\mathbb{E}[(Y-\mathbb{E}(Y))^2]=\mathbb{E}[(Y-\mu)^2]$$
+Combine all these together, we have
+\begin{align*}
+\Pr\left\{|Y-\mu|>\epsilon\right\} &= \Pr\left\{(Y-\mu)^2>\epsilon^2\right\} \\
+&\leq \dfrac{\mathbb{E}[(Y-\mu)^2]}{\epsilon^2} \\
+&= \dfrac{\sigma^2}{\epsilon^2}
+\end{align*}
+
+(c) Since $Z_1,\ldots,Z_n$ are i.i.d. random variables, and $\overline{Z}_n=\dfrac1n\sum\limits_{i=1}^nZ_i$, from the linearity of expectation and variance(among independent variables), we have
+\begin{align*}
+\mathbb{E}\left(\overline{Z}_n\right) &= \dfrac{1}{n}\sum\limits_{i=1}^n\mathbb{E}\left(Z_i\right) = \dfrac{1}{n}\sum\limits_{i=1}^n\mu = \mu \\
+\Var\left(\overline{Z}_n\right) &= \dfrac{1}{n^2}\sum\limits_{i=1}^n\Var\left(Z_i\right) = \dfrac{1}{n^2}\sum\limits_{i=1}^n\sigma^2 = \dfrac{\sigma^2}{n}
+\end{align*}
+So from Chebyshev's inequality, we have
+$$\Pr\left\{|\overline{Z}_n-\mu|>\epsilon\right\} \leq \dfrac{\frac{\sigma^2}{n}}{\epsilon^2} = \dfrac{\sigma^2}{n\epsilon^2}$$
+
+\newpage

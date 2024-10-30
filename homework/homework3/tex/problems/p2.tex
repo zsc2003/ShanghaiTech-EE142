@@ -1,0 +1,55 @@
+\textcolor{blue}{Problem 2}
+
+5.20 Huffman codes with costs.\quad Words such as "Run!", "Help!", and "Fire!" are short, not because they are used frequently, but perhaps because time is precious in the situations in which these words are required. Suppose that $X=i$ with probability $p_i,i=1,2,\ldots,m$. Let $l_i$ be the number of binary symbols in the codeword associated with $X=i$, and let $c_i$ denote the cost per letter of the codeword when $X=i.$ Thus, the average cost $C$ of the description of $X$ is $C=\sum\limits_{i=1}^mp_ic_il_i$.
+
+(a) Minimize $C$ over all $l_1,l_2,\ldots,l_m$ such that $\sum2^{-l_i}\leq 1$. Ignore any implied integer constraints on $l_i$. Exhibit the minimizing $l_1^*,l_2^*,\ldots,l_m^*$ and the associated minimum value $C^*$.
+
+(b) How would you use the Huffman code procedure to minimize $C$ over all uniquely decodable codes? Let $C_{\text{Huffman}}$ denote this minimum.
+
+(c) Can you show that
+$$C^*\leq C_\text{Huffman}\leq C^*+\sum_{i=1}^mp_ic_i$$
+
+\textcolor{blue}{Solution}
+
+(a) Ignore the integer constrains for the length $l_i$, we can construct the optimization problem as
+\begin{align*}
+\min\limits_{l_1\ldots,l_m} \quad & C=\sum_{i=1}^mp_ic_il_i \\
+\text{s.t.} \quad & \sum_{i=1}^m2^{-l_i}\leq 1
+\end{align*}
+
+The Lagrangian of the optimization problem is
+$$L(l_1,\ldots,l_m,\lambda)=\sum_{i=1}^mp_ic_il_i+\lambda\left(\sum_{i=1}^m2^{-l_i}-1\right)$$
+According to the KKT condition, we have the first order derivative of $L$ with respect to $l_i$ is $0$, which is
+$$\dfrac{\partial L}{\partial l_i}=p_ic_i+\lambda2^{-l_i}\log_e 2=0,\quad\forall i=1,\ldots,m$$
+i.e.
+$$\left(\lambda\log_e2\right)\cdot 2^{-l_i^*}=-p_ic_i$$
+Thus, to have an optimal code, we set the inequality to be an equality, then we sum all the equations above, we have
+\begin{align*}
+&\quad \left(\lambda\log_e2\right)\sum_{i=1}^m2^{-l_i^*} = -\sum_{i=1}^mp_ic_i \\
+&\Rightarrow \lambda\log_e2 = -\sum_{i=1}^mp_ic_i \\
+&\Rightarrow 2^{-l_i^*} = \dfrac{p_ic_i}{\sum\limits_{i=1}^mp_ic_i} \\
+&\Rightarrow l_i^* = -\log\left(\dfrac{p_ic_i}{\sum\limits_{i=1}^mp_ic_i}\right)
+\end{align*}
+So the minimum value is
+\begin{align*}
+C^* &= \sum_{i=1}^mp_ic_i\left(-\log\left(\dfrac{p_ic_i}{\sum\limits_{j=1}^mp_jc_j}\right)\right) \\
+&= -\sum_{i=1}^m\left(p_ic_i\right)\log\left(p_ic_i\right) + \left(\sum_{i=1}^mp_ic_i\right)\log\left(\sum_{i=1}^mp_ic_i\right)
+\end{align*}
+
+(b) Just let $q_i=\dfrac{p_ic_i}{\sum\limits_{i=1}^mp_ic_i}$ to be the new probability distribution, and apply the Huffman code procedure to encode this new distribution $q$.
+
+(c) It is obvios that $C^*\leq C_\text{Huffman}$, since the $C^*$ is the minimum value of the cost function $C$ over all uniquely decodable codes without integer constrains.
+
+Since we have known that $C_\text{Huffman}$ is the optimal for the distribution $q$ if we add the integer constrain to the optimization problem in (a), with the Shannon's code, we have $l_i=\left\lceil\log\left(\dfrac{1}{q_i}\right)\right\rceil$, then we have
+\begin{align*}
+C_\text{Shannon} &= \sum_{i=1}^mp_ic_i\left\lceil\log\left(\dfrac{1}{q_i}\right)\right\rceil \\
+&< \sum_{i=1}^mp_ic_i\left(\log\left(\dfrac{1}{q_i}\right)+1\right) \\
+&= \sum_{i=1}^mp_ic_i\left(\log\left(\dfrac{\sum\limits_{j=1}^mp_jc_j}{p_ic_i}\right)+1\right) \\
+&= C^* + \sum_{i=1}^mp_ic_i
+\end{align*}
+Thus, we have
+$$C_\text{Huffman}\leq C_\text{Shannon}\leq C^*+\sum\limits_{i=1}^mp_ic_i$$
+i.e. we have proved that
+$$C^*\leq C_\text{Huffman}\leq C^*+\sum_{i=1}^mp_ic_i$$
+
+\newpage

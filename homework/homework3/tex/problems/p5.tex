@@ -1,0 +1,37 @@
+\textcolor{blue}{Problem 5}
+
+3.9 AEP.\quad Let $X_1,X_2,\ldots$ be independent, identically distributed random variables drawn according to the probability mass function $p(x),x\in\{1,2,\ldots,m\}$. Thus, $p(x_{1},x_{2},\ldots,x_{n})=\prod_{i=1}^{n}p(x_{i})$. We know that $-\dfrac1n\log p(X_1,X_2,\ldots,X_n)\to H(X)$ in probability. Let $q(x_1,x_2,\ldots,x_n)=\prod_{i=1}^nq(x_i)$, where $q$ is another probability mass function on $\{1,2,\ldots,m\}$.
+
+(a) Evaluate $\lim-\dfrac1n\log q(X_1,X_2,\ldots,X_n)$, where $X_1,X_2,\ldots$ are $\stackrel{i.i.d.}{\sim} p(x)$.
+
+(b) Now evaluate the limit of the log likelihood ratio
+$\dfrac{1}{n}\log\dfrac{q(X_{1},\ldots,X_{n})}{p(X_{1},\ldots,X_{n})}$ when $X_1,X_{2},\ldots$ are $\stackrel{i.i.d.}{\sim} p(x).$ Thus, the
+odds favoring $q$ are exponentially small when $p$ is true.
+
+\textcolor{blue}{Solution}
+
+(a)
+\begin{align*}
+\lim_{n\to\infty}-\dfrac{1}{n}\log q(X_1,X_2,\ldots,X_n) &= \lim_{n\to+\infty}-\dfrac{1}{n}\log\prod\limits_{i=1}^nq(X_i) \\
+&= \lim_{n\to\infty}\dfrac{1}{n}\sum\limits_{i=1}^n\log \frac{1}{q(X_i)} \\
+&= \lim_{n\to\infty}\dfrac{1}{n}\sum\limits_{i=1}^nY_i \text{\quad\quad\quad\quad (Let $Y=\log\dfrac{1}{q(X)}$)} \\
+&= \mathbb{E}(Y) \text{\quad w.p. 1 \quad\quad\quad\ (Strong Law of Large Numbers)} \\
+&= \mathbb{E}_{X\sim p(x)}\left[\log\dfrac{1}{q(X)}\right] \\
+&= \sum\limits_{x} p(x)\log\dfrac{1}{q(x)}
+\end{align*}
+Which is the cross entropy between $p$ and $q$.
+
+(b)
+\begin{align*}
+\lim_{n\to\infty} \dfrac{1}{n}\log\dfrac{q(X_{1},\ldots,X_{n})}{p(X_{1},\ldots,X_{n})} &= \lim_{n\to\infty} \dfrac{1}{n}\log\dfrac{\prod_{i=1}^nq(X_i)}{\prod_{i=1}^np(X_i)} \\
+&= \lim_{n\to\infty} -\dfrac{1}{n}\sum\limits_{i=1}^n\log\dfrac{p(X_i)}{q(X_i)} \\
+&= -\lim_{n\to\infty} \dfrac{1}{n}\sum\limits_{i=1}^nY_i \text{\quad\quad\quad\quad\quad (Let $Y=\log\dfrac{p(X)}{q(X)}$)} \\
+&= -\mathbb{E}(Y) \text{\quad w.p. 1 \quad\quad\quad\quad\ (Strong Law of Large Numbers)} \\
+&= -\mathbb{E}_{X\sim p(x)}\left[\log\frac{p(X)}{q(X)}\right] \\
+&= -\sum\limits_{x} p(x)\log\frac{p(x)}{q(x)} \\
+&= -D(p||q)
+\end{align*}
+
+i.e. when $n\to\infty$,
+$$q(X_{1},\ldots,X_{n}) = p(X_{1},\ldots,X_{n})e^{-nD(p\|q)}$$
+Which shows that the odds favoring $q$ are exponentially small when $p$ is true.

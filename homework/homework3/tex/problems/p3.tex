@@ -1,0 +1,60 @@
+\textcolor{blue}{Problem 3}
+
+5.30 Relative entropy is cost of miscoding.\quad Let the random variable $X$ have five possible outcomes $\{1,2,3,4,5\}.$ Consider two distributions $p(x)$ and $q(x)$ on this random variable.
+
+\begin{table*}[!htbp]
+    \centering
+    \begin{tabular}{c|cc|cc}
+        \hline \text{Symbol} & $p(x)$ & $q(x)$ & $C_1(x)$ & $C_2(x)$  \\
+        \hline $1$ & $\frac{1}{2}$ & $\frac{1}{2}$ & $0$ & $0$ \\
+        $2$ & $\frac{1}{4}$ & $\frac{1}{8}$ & $10$ & $100$ \\
+        $3$ & $\frac{1}{8}$ & $\frac{1}{8}$ & $110$ & $101$ \\
+        $4$ & $\frac{1}{16}$  & $\frac{1}{8}$ & $1110$ & $110$ \\
+        $5$ & $\frac{1}{16}$  & $\frac{1}{8}$ & $1111$ & $111$ \\
+        \hline
+    \end{tabular}
+\end{table*}
+
+(a) Calculate $H(p), H(q), D\left(p\|q\right)$,and $D\left(q\|p\right)$.
+
+(b) The last two columns represent codes for the random variable. Verify that the average length of $C_1$ under $p$ is equal to the entropy $H(p)$. Thus, $C_1$ is optimal for $p$. Verify that $C_2$ is optimal for $q$.
+
+(c) Now assume that we use code $C_2$ when the distribution is $p$. What is the average length of the codewords. By how much does it exceed the entropy $p$?
+
+(d) What is the loss if we use code $C_1$ when the distribution is $q$?
+
+\textcolor{blue}{Solution}
+
+(a)
+\begin{align*}
+H\left(p\right) &= H\left(\dfrac{1}{2},\dfrac{1}{4},\dfrac{1}{8},\dfrac{1}{16},\dfrac{1}{16}\right) = -\left(\dfrac{1}{2}\log_2\dfrac{1}{2}+\dfrac{1}{4}\log_2\dfrac{1}{4}+\dfrac{1}{8}\log_2\dfrac{1}{8}+\dfrac{1}{16}\log_2\dfrac{1}{16}+\dfrac{1}{16}\log_2\dfrac{1}{16}\right) = \dfrac{15}{8} \text{\ bits} \\
+H\left(q\right) &= H\left(\dfrac{1}{2},\dfrac{1}{8},\dfrac{1}{8},\dfrac{1}{8},\dfrac{1}{8}\right) = -\left(\dfrac{1}{2}\log_2\dfrac{1}{2}+\dfrac{1}{8}\log_2\dfrac{1}{8}+\dfrac{1}{8}\log_2\dfrac{1}{8}+\dfrac{1}{8}\log_2\dfrac{1}{8}+\dfrac{1}{8}\log_2\dfrac{1}{8}\right) = 2 \text{\ bits} \\
+D(p\|q) &= \sum\limits_{x}p(x)\log_2\dfrac{p(x)}{q(x)} = \dfrac{1}{8} \text{\ bits} \\
+D(q\|p) &= \sum\limits_{x}q(x)\log_2\dfrac{q(x)}{p(x)} = \dfrac{1}{8} \text{\ bits}
+\end{align*}
+
+(b) Let the average length of $C_1$ under $p$ be $\overline{L}_1$, the average length of $C_2$ under $q$ be $\overline{L}_2$, and let $l_i(x)=|C_i(x)|$, then we have
+\begin{align*}
+\overline{L}_1 &= \sum_{x}p(x)l_1(x) = \dfrac{15}{8} \text{\ bits} = H(p) \\
+\overline{L}_2 &= \sum_{x}q(x)l_2(x) = 2 \text{\ bits} = H(q)
+\end{align*}
+Which means that $C_1$ is optimal for $p$, and $C_2$ is optimal for $q$.
+
+(c) Suppose the average length of the codewords is $\overline{L}'$ when use code $C_2$ when the distribution is $p$.
+Then we have
+$$\overline{L}_1'=\sum_{x}p(x)l_2(x)=2 \text{\ bits}$$
+Since we could discover that $l_1(x)=\log\left(\dfrac{1}{p(x)}\right), l_2(x)=\log\left(\dfrac{1}{1(x)}\right)$
+The exceed parts of the entropy $p$ is
+\begin{align*}
+\Delta_1 &= \overline{L}_1'-H(p) \\
+&= \sum_{x}p(x)l_2(x)-\sum_{x}p(x)l_1(x) \\
+&= \sum_{x}p(x)\log\left(\dfrac{1}{q(x)}\right) - \sum_{x}p(x)\log\left(\dfrac{1}{p(x)}\right) \\
+&= \sum_{x}p(x)\log\left(\dfrac{p(x)}{q(x)}\right) \\
+&= D\left(p\|q\right) \\
+&= \dfrac{1}{8} \text{\ bits}
+\end{align*}
+
+(d) Similarly with (c), we could get that the loss is that
+$$\Delta_2 = \overline{L}_2'-H(q) = D\left(q\|p\right) = \dfrac{1}{8} \text{\ bits}$$
+
+\newpage

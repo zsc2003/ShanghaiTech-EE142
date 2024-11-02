@@ -1,0 +1,28 @@
+\section{Stochastic Processes}
+
+Random variable $X\to$ Random process $X(t)$.
+
+每一个时刻$t$都是一个随机变量$X(t)$.
+
+\begin{align*}
+\text{Mean:}\qquad\quad \mu_X(t) &= \mathbb{E}[X(t)] \\
+\text{Autocorrelation (自相关)}:\ \ R_X(t_1,t_2) &= \mathbb{E}[X(t_1)X^*(t_2)] \\
+\text{Cross-correlation(互相关)}: R_{XY}(t_1,t_2) &= \mathbb{E}[X(t_1)Y^*(t_2)]
+\end{align*}
+\begin{align*}
+R_{X}(t_2,t_1) &= R_X^*(t_1,t_2) \\
+R_{XY}(t_1,t_2) &= R_{YX}^*(t_2,t_1)
+\end{align*}
+
+\begin{definition}
+Stationary Process(平稳过程): for all time shift $\tau$, time duration $k$, sample time $t_1,\ldots,t_k$:
+$$F_X(x_{t_1+\tau},\ldots,x_{t_k+\tau}) = F_X(x_{t_1},\ldots,x_{t_k})$$
+PDF 或 CDF 不随时间变化而变化. (Imply constant mean and variance if exist).
+\end{definition}
+
+\begin{definition}
+Wide-Sense Stationary Process(WSS) 宽平稳过程: \\
+1. $\mu_X(t)$ is constant. \\
+2. $R_X(t_1,t_2) = R_X(t_1+\tau,t_2+\tau)$, where $\tau=t_2-t_1$. \\
+Jointly WSS: $R_{XY}(t_1,t_2) = R_{XY}(\tau)$, \textbf{只和时间差(duration)$\tau$有关.}
+\end{definition}

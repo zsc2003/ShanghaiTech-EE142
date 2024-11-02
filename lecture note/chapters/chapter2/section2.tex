@@ -1,0 +1,35 @@
+\section{Entropy Rates of Stochastic Processes}
+
+
+\begin{definition}
+The \textbf{entropy rate} of a stochastic process $\{X_i\}$ is defined as
+$$H\left(\mathcal{X}\right) = \lim_{n\to\infty} \frac{1}{n}H(X_1,X_2,\cdots,X_n)$$
+\end{definition}
+随机过程$X(t)$的不确定度为$H(X(t))$, 整个随机过程的不确定度为$H\left(\mathcal{X}\right)$. $H\left(\mathcal{X}\right)$平衡整个过程中每个变量的不确定度(信息量), 极限可能不存在(e.g. 趋于极限时$H(\mathcal{X}$)可能在振荡, 而不是收敛到具体值).但$H\left(\mathcal{X}\right)$一定有界:
+$$0\leq H(X_i)\leq \log|\mathcal{X}| \Rightarrow 0\leq H\left(\mathcal{X}\right)\leq \log|\mathcal{X}|$$
+
+\begin{example}
+\begin{itemize}
+\item[1.] $X_1,X_2,\cdots,X_n$ are i.i.d., then:
+$$H\left(\mathcal{X}\right) = \lim_{n\to\infty} \dfrac{1}{n}H(X_1,X_2,\cdots,X_n) = \lim_{n\to\infty} \dfrac{1}{n}\sum_{i=1}^nH(X_i) = H(X_1) = \ldots = H(X_n)$$
+
+\item[2.] $X_1\perp X_2\perp\ldots\perp X_n$, then:
+$$H\left(\mathcal{X}\right)=\lim_{n\to\infty}\dfrac{1}{n}H(X_1,X_2,\cdots,X_n) = \lim_{n\to\infty}\dfrac{1}{n}\sum_{i=1}^nH(X_i)$$
+
+\end{itemize}
+\end{example}
+
+\begin{definition}
+Define a related quantity for entropy rate:
+$$H'\left(\mathcal{X}\right) = \lim_{n\to\infty}H(X_n|X_{n-1},X_{n-2},\cdots,X_1)$$
+\end{definition}
+
+\begin{theorem}
+For a stationary stochastic process $\{X(t)\}$, $H\left(\mathcal{X}\right)$ limit exists:
+$$H\left(\mathcal{X}\right) = H'\left(\mathcal{X}\right) = \lim_{n\to\infty}H(X_n|X_{n-1},X_{n-2},\cdots,X_1)$$
+\end{theorem}
+
+\begin{example}
+For a stationary Markov chain: $X_1\rightarrow X_2\rightarrow\cdots\rightarrow X_n$ \textbf{(记忆为1!)}
+$$H\left(\mathcal{X}\right)=H'\left(\mathcal{X}\right)=\lim_{n\to\infty}H(X_n|X_{n-1},\ldots,X_1)=H(X_n|X_{n-1})=\ldots=H(X_2|X_1)$$
+\end{example}

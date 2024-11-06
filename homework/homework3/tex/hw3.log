@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.3.6)  30 OCT 2024 12:04
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.3.6)  6 NOV 2024 11:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -664,7 +664,7 @@ LaTeX Font Info:    No file TUptm.fd. on input line 127.
 LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
 (Font)              using `TU/lmr/m/n' instead on input line 127.
 
-No file hw3.aux.
+(./hw3.aux)
 \openout1 = `hw3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 127.
@@ -751,10 +751,8 @@ Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Link coloring ON on input line 127.
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 \c@lstlisting=\count353
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -816,35 +814,18 @@ LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 3.
 File: ../huffman1.png Graphic file (type bmp)
 <../huffman1.png>
-
-
-LaTeX Warning: Reference `fig:huffman1' on page 2 undefined on input line 21.
-
-
-LaTeX Warning: Reference `fig:huffman2' on page 2 undefined on input line 21.
-
 File: ../huffman2.png Graphic file (type bmp)
 <../huffman2.png>
-[2]
-
-LaTeX Warning: Reference `fig:huffman1' on page 3 undefined on input line 39.
-
-[3]) (./problems/p2.tex [4] [5]) (./problems/p3.tex [6] [7]) (./problems/p4.tex [8] [9]) (./problems/p5.tex) [10] (./hw3.aux)
+ [2] [3]) (./problems/p2.tex [4] [5]) (./problems/p3.tex [6] [7]) (./problems/p4.tex [8] [9]) (./problems/p5.tex) [10] (./hw3.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 20107 strings out of 476683
- 409175 string characters out of 5807576
+ 20108 strings out of 476683
+ 409178 string characters out of 5807576
  1868012 words of memory out of 5000000
- 39990 multiletter control sequences out of 15000+600000
+ 39989 multiletter control sequences out of 15000+600000
  528362 words of font info for 110 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  89i,13n,97p,596b,401s stack positions out of 10000i,1000n,20000p,200000b,200000s

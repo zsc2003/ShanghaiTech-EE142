@@ -20,13 +20,13 @@ $$C^*\leq C_\text{Huffman}\leq C^*+\sum_{i=1}^mp_ic_i$$
 The Lagrangian of the optimization problem is
 $$L(l_1,\ldots,l_m,\lambda)=\sum_{i=1}^mp_ic_il_i+\lambda\left(\sum_{i=1}^m2^{-l_i}-1\right)$$
 According to the KKT condition, we have the first order derivative of $L$ with respect to $l_i$ is $0$, which is
-$$\dfrac{\partial L}{\partial l_i}=p_ic_i+\lambda2^{-l_i}\log_e 2=0,\quad\forall i=1,\ldots,m$$
+$$\dfrac{\partial L}{\partial l_i}=p_ic_i \textcolor{red}{-}\lambda2^{-l_i}\log_e 2=0,\quad\forall i=1,\ldots,m$$
 i.e.
-$$\left(\lambda\log_e2\right)\cdot 2^{-l_i^*}=-p_ic_i$$
+$$\left(\lambda\log_e2\right)\cdot 2^{-l_i^*}=p_ic_i$$
 Thus, to have an optimal code, we set the inequality to be an equality, then we sum all the equations above, we have
 \begin{align*}
-&\quad \left(\lambda\log_e2\right)\sum_{i=1}^m2^{-l_i^*} = -\sum_{i=1}^mp_ic_i \\
-&\Rightarrow \lambda\log_e2 = -\sum_{i=1}^mp_ic_i \\
+&\quad \left(\lambda\log_e2\right)\sum_{i=1}^m2^{-l_i^*} = \sum_{i=1}^mp_ic_i \\
+&\Rightarrow \lambda\log_e2 = \sum_{i=1}^mp_ic_i \\
 &\Rightarrow 2^{-l_i^*} = \dfrac{p_ic_i}{\sum\limits_{i=1}^mp_ic_i} \\
 &\Rightarrow l_i^* = -\log\left(\dfrac{p_ic_i}{\sum\limits_{i=1}^mp_ic_i}\right)
 \end{align*}

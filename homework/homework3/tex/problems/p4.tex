@@ -34,7 +34,7 @@ In this case, we have $\Pr\left\{X\geq t\right\}= \dfrac{\mathbb{E}[X]}{t}$.
 (b) From the Markov inequality, we have
 $$\Pr\left\{X\geq \epsilon^2\right\}\leq\dfrac{\mathbb{E}[X]}{\epsilon^2}$$
 Let $X=(Y-\mu)^2$, then
-$$\Pr\left\{(Y-\mu)^2\geq \epsilon^2\right\}\leq\dfrac{\mathbb{E}[(Y-\mu)^2]}{\epsilon^2}$$
+$$\textcolor{red}{\Pr\left\{(Y-\mu)^2> \epsilon^2\right\}\leq} \Pr\left\{(Y-\mu)^2\geq \epsilon^2\right\}\leq\dfrac{\mathbb{E}[(Y-\mu)^2]}{\epsilon^2}$$
 From the definition of variance, we have
 $$\sigma^2=\mathbb{E}[(Y-\mathbb{E}(Y))^2]=\mathbb{E}[(Y-\mu)^2]$$
 Combine all these together, we have

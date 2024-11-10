@@ -74,9 +74,10 @@ Lemma: If $f(x)$ is convex, $g(x)$ is an increasing linear function, then $f(g(x
 proof:
 \begin{align*}
 I(X;Y) &= H(Y) - H(Y|X) \\
-&= \sum_{y}\underbrace{p(y)\log\dfrac{1}{p(y)}}_{x\log x \text{\ is convex}} - \underbrace{\sum_{x}p(x)H(Y|X=x)}_{\text{linear to } p(y)}
+&= \sum_{y}\underbrace{p(y)\log\dfrac{1}{p(y)}}_{x\log x \text{\ is convex}} - \underbrace{\sum_{x}p(x)H(Y|X=x)}_{\text{linear to } p(x)}
 \end{align*}
-So $I(X;Y)$ is concave in $p(y)$.
+由于$p(y)=\sum\limits_{x}p(x)p(y|x)$, 所以$p(y)$是关于$p(x)$的线性函数, 所以$H(Y)$关于$p(y)$是concave, 关于$p(x)$也是concave的. \\
+So $I(X;Y)$ is concave in $p(x)$.
 
 3. $X\sim p(x)$, $H(X)$ is concave in $p(x)$. \\
 Define $\Theta$: Time sharing random variable. \\

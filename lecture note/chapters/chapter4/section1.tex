@@ -1,0 +1,17 @@
+\section{Law of Large Numbers}
+
+几种收敛方式:
+Given a sequence $X_1,X_2,\ldots,X_n$, it converges to $X$:
+\begin{itemize}
+\item[1.] In probability(依概率收敛):
+$$\lim\limits_{n\to\infty}P\left(|X_n-X|>\epsilon\right)=0\Rightarrow\lim\limits_{n\to\infty}P\left(|X_n-X|>\epsilon\right)<\delta$$
+\item[2.] In mean square(均方收敛): $\lim\limits_{n\to\infty}\mathbb{E}\left[(X_n-X)^2\right]=0$.
+\item[3.] Almost surely / with probability 1: $P\left(\lim\limits_{n\to\infty}X_n=X\right)=1$.
+\end{itemize}
+
+Law of Large Numbers(LLN): 大数定律.
+$x_1,\ldots,x_n\stackrel{i.i.d.}{\sim}p(x)$, then $\dfrac{1}{n}\sum\limits_{i=1}^nx_i$ converges to $\mathbb{E}[x]$.
+
+(1) in probability: Weak LLN(Weak Law of Large Numbers).
+
+(2) w.p. $1$: Strong LLN(Strong Law of Large Numbers).

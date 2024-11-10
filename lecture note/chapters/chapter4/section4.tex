@@ -1,0 +1,14 @@
+\section{Smallest Set*}
+在最开始的例子中, 我们提到 typical sequence只取最典型的序列, 而概率最大的序列可能不在其中. 满足符合出现概率大的序列非常少. Smallest set 会加入这些出现概率大的序列. 但其中序列的数量在 $\delta\to 0,\epsilon\to 0$ 时与 $\left|A_{\epsilon}^{(n)}\right|$ 同阶.
+
+\begin{definition}
+$\forall n=1,2,\ldots$, let $B_{\delta}^{(n)}\subset\mathcal{X}^n$ be the smallest set with
+$$p\left(B_{\delta}^{(n)}\right)\geq 1-\delta$$
+\end{definition}
+
+\begin{proposition}
+Suppose $x_1,\ldots,x_n\stackrel{i.i.d.}{\sim}p(x)$, for $\delta<\dfrac{1}{2}$, and any $\delta'>0$, if $B_{\delta}^{(n)}$ is a smallest set(i.e. $p\left(B_{\delta}^{(n)}\right)\geq 1-\delta$), then
+$$\dfrac{1}{n}\log\left|B_{\delta}^{(n)}\right|> H(X)-\delta' \text{\quad for $n$ is sufficiently large}$$
+Which means that $\left|B_{\delta}^{(n)}\right|\geq 2^{n(H(X)-\delta')}$ for $n$ is sufficiently large.
+\end{proposition}
+And since $\left|A_{\epsilon}^{(n)}\right|$ has $2^{n(H(X)\pm\epsilon)}$ elements, so we can say that when $\delta\to 0, \epsilon\to 0$, $\left|B_{\delta}^{(n)}\right|=\left|A_{\epsilon}^{(n)}\right|=2^{nH(X)}$.

@@ -1,0 +1,66 @@
+\section{Typical Sequence, Typical Set}
+typical sequence的物理意义:
+\begin{example}
+Suppose $X\sim Bern\left(\dfrac{1}{3}\right), x_1,\ldots,x_n\stackrel{i.i.d.}{\sim}X$. 则下列序列: \\
+1. $00\cdots 0$ ($18$个$0$) \\
+2. $1010\cdots 10$ ($9$个$1$, $9$个$0$) \\
+3. $001001\cdots 001$ ($6$个$1$, $12$个$0$) \\
+4. $1111\cdots 11$ ($18$个$1$) \\
+直觉上, 序列$3$每个数字的频率最符合预期(与概率相同), 更加典型. \\
+序列$1$虽然生成出来的概率大, 但是有着大概率的序列的种类也更少, 因此未必典型.
+\end{example}
+\begin{definition}
+$x_1,\cdots,x_n\stackrel{i.i.d.}{\sim}p(x)$, then $(x_1,\ldots,x_n)$ is $\epsilon$-typical sequence if:
+$$2^{-n\left(H(X)+\epsilon\right)}\leq p(x_1,\ldots,x_n) \leq 2^{-n\left(H(X)-\epsilon\right)}$$
+\end{definition}
+当$n\to+\infty$时, 可以让$\epsilon\to 0$, 即
+$$p(x_1,\ldots,x_n)\to 2^{-nH(X)}$$
+
+\begin{theorem}
+\label{thm:AEP}
+Asymototic Equipartition Property(AEP): If $x_1,\ldots,x_n\stackrel{i.i.d.}{\sim}p(x)$:
+$$-\dfrac{1}{n}\log p(x_1,\ldots,x_n)\to H(X) \qquad\text{in probability}$$
+proof:
+\begin{align*}
+-\dfrac{1}{n}\log p(x_1,\ldots,x_n) &= -\dfrac{1}{n}\sum_{i=1}^{n}\log p(x_i) \\
+&= -\sum_{i=1}^{n}\dfrac{1}{n}y_i \text{\qquad (Let $Y=\log p(X)$)} \\
+&\to -\mathbb{E}_{X\sim p(x)}[Y] \text{\qquad in probability (LLN)} \\
+&= -\sum_{x}p(x)\log p(x) \\
+&= H(X)
+\end{align*}
+\end{theorem}
+
+\begin{definition}
+$A_{\epsilon}^{(n)}$ is a typical set: $\forall (x_1,\ldots,x_n)\in A_{\epsilon}^{(n)}$ are $\epsilon$-typical sequences.
+\end{definition}
+
+\begin{proposition}
+1. If $(x_1,\ldots,x_n)\in A_{\epsilon}^{(n)}$, then
+$$H(X)-\epsilon\leq -\dfrac{1}{n}\log p(x_1,\ldots,x_n) \leq H(X)+\epsilon$$
+2. $P\left[(x_1,\ldots,x_n)\in A_{\epsilon}^{(n)}\right]>1-\epsilon$, for $n\to\infty$ \\
+3. $(1-\epsilon)2^{n\left(H(X)-\epsilon\right)}\leq \left|A_{\epsilon}^{(n)}\right|\leq 2^{n\left(H(X)+\epsilon\right)}$
+\end{proposition}
+\textcolor{red}{当$n\to+\infty$时,可以让$\epsilon\to 0$, 此时可以看作 $\left|A_{\epsilon}^{(n)}\right|= 2^{nH(X)}$, 即有 $$P\left[(x_1,\ldots,x_n)\in A_{\epsilon}^{(n)}\right]=1\Rightarrow P(x_1,\ldots,x_n)=\frac{1}{\left|A_{\epsilon}^{(n)}\right|}=2^{-nH(X)}$$ 即每个typical sequence均以此概率等概率出现}
+
+proof: \\
+1. Typical set的定义. \\
+2. 由定理 \ref{thm:AEP}(AEP) 可得
+$$P\left[\left|-\dfrac{1}{n}\log p(x_1,\ldots,x_n)-H(X)\right|<\epsilon\right] > 1-\delta$$
+取 $\delta=\epsilon$ 即可. \\
+3. 合并上下界即可证明 3. \\
+下界: 由 1. 和 2. 结合可得
+\begin{align*}
+1 - \epsilon &\leq P\left[(x_1,\ldots,x_n)\in A_{\epsilon}^{(n)}\right] \text{\qquad (由2. 得)} \\
+&= \sum_{(x_1,\ldots,x_n)\in A_{\epsilon}^{(n)}}p(x_1,\ldots,x_n) \\
+&\leq \sum_{(x_1,\ldots,x_n)\in A_{\epsilon}^{(n)}}2^{-n\left(H(X)-\epsilon\right)} \text{\qquad (由1. 得)} \\
+&= \left|A_{\epsilon}^{(n)}\right|2^{-n\left(H(X)-\epsilon\right)}
+\end{align*}
+上界: 由 1. 可得
+$$1 = \sum_{x^n\in\mathcal{X}^n}p(x^n) \geq \sum_{x^n\in A_{\epsilon}^{(n)}}p(x^n) \geq \left|A_{\epsilon}^{(n)}\right|2^{-n\left(H(X)+\epsilon\right)} $$
+
+当 $n\to+\infty$ 时, $\epsilon\to 0$, 可以理解为: \\
+\textcolor{red}{
+1. $-\dfrac{1}{n}\log p(x^n) = H(X)$ \\
+2. $ p\left(x^n\in A_{\epsilon}^{(n)}\right) = 1$ \\
+3. $ \left|A_{\epsilon}^{(n)}\right| = 2^{nH(X)}$
+}

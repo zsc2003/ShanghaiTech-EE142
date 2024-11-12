@@ -25,9 +25,9 @@ proof: 1. 由定义可得. \\
 $$-\dfrac{1}{n}\log p(x^n)\to H(X), \quad -\dfrac{1}{n}\log p(y^n)\to H(Y), \quad -\dfrac{1}{n}\log p(x^n,y^n)\to H(X,Y)$$
 i.e. $\exists N_1,N_2,N_3\in\mathbb{N}$, s.t.
 \begin{align*}
-\Pr\left[\left|-\dfrac{1}{n}\log p(x^n)-H(X)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{3} \text{\qquad for } n\geq n_1 \\
-\Pr\left[\left|-\dfrac{1}{n}\log p(y^n)-H(Y)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{3} \text{\qquad for } n\geq n_2 \\
-\Pr\left[\left|-\dfrac{1}{n}\log p(x^n,y^n)-H(X,Y)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{3} \text{\qquad for } n\geq n_3
+\Pr\left[\left|-\dfrac{1}{n}\log p(x^n)-H(X)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{3} \text{\qquad for } n\geq N_1 \\
+\Pr\left[\left|-\dfrac{1}{n}\log p(y^n)-H(Y)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{3} \text{\qquad for } n\geq N_2 \\
+\Pr\left[\left|-\dfrac{1}{n}\log p(x^n,y^n)-H(X,Y)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{3} \text{\qquad for } n\geq N_3
 \end{align*}
 Then let $N=\max\{N_1,N_2,N_3\}$, we have $\forall n\geq N$:
 $$p\left(x^n\notin A_{\epsilon}^{(n)}(p_X)\right)<\dfrac{\epsilon}{3}, \quad p\left(y^n\notin A_{\epsilon}^{(n)}(p_Y)\right)<\dfrac{\epsilon}{3}, \quad p\left(x^n,y^n\notin A_{\epsilon}^{(n)}(p_{X,Y})\right)<\dfrac{\epsilon}{3}\Rightarrow$$

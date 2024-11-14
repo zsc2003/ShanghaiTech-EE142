@@ -17,7 +17,7 @@ $$X^n\triangleq \left(X_1,\ldots,X_n\right), Y^n\triangleq \left(Y_1,\ldots,Y_n\
 1. $2^{-n\left(H(X,Y)+\epsilon\right)}\leq p(x^n,y^n)\leq 2^{-n\left(H(X,Y)-\epsilon\right)}$ \\
 2. $P\left(\left(x^n,y^n\right)\in A_{\epsilon}^{(n)}(P_{X,Y})\right) \to 1$ as $n\to\infty$. \\
 3. $(1-\epsilon)2^{n\left(H(X,Y)-\epsilon\right)}\leq |A_{\epsilon}^{(n)}(P_{X,Y})|\leq 2^{n\left(H(X,Y)+\epsilon\right)}$ \\
-4. $P\left[(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(p(x)p(y))\right]\to 2^{-nI(X;Y)}$ \qquad($\tilde{x},\tilde{y}$独立产生)
+4. $P\left[(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}\textcolor{red}{(P_{X,Y})}\right]\to 2^{-nI(X;Y)}$ \qquad($\tilde{x},\tilde{y}$独立产生)
 \end{proposition}
 
 proof: 1. 由定义可得. \\
@@ -55,14 +55,14 @@ i.e. $\left|A_{\epsilon}^{(n)}(P_{X,Y})\right| \leq 2^{n\left(H(X,Y)+\epsilon\ri
 $$(1-\epsilon)2^{n\left(H(X,Y)-\epsilon\right)} \leq \left|A_{\epsilon}^{(n)}(P_{X,Y})\right| \leq 2^{n\left(H(X,Y)+\epsilon\right)}$$
 
 4. Since $(\tilde{x}^n,\tilde{y}^n)\stackrel{i.i.d.}{\sim} p(x)p(y)$, we have
-$$p\left[(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(p(X,Y))\right] = \sum_{(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(p(X,Y))}p(\tilde{x})p(\tilde{y}) = \left|A_{\epsilon}^{(n)}(p(X,Y))\right|p(\tilde{x})p(\tilde{y})$$
+$$p\left[(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(\textcolor{red}{P_{X,Y}})\right] = \sum_{(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(\textcolor{red}{P_{X,Y}})}p(\tilde{x})p(\tilde{y}) = \left|A_{\epsilon}^{(n)}(\textcolor{red}{P_{X,Y}})\right|p(\tilde{x})p(\tilde{y})$$
 结合3. $(1-\epsilon)2^{n\left(H(X,Y)-\epsilon\right)} \leq \left|A_{\epsilon}^{(n)}(P_{X,Y})\right| \leq 2^{n\left(H(X,Y)+\epsilon\right)}$,及 $\tilde{x}^n,\tilde{y}^n$是typical sequence ($2^{-n\left(H(X)+\epsilon\right)}\leq p(\tilde{x}^n)\leq 2^{-n\left(H(X)-\epsilon\right)}$) 可得
 \begin{align*}
-p\left[(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(p(x)p(y))\right] &\leq 2^{-n\left((H(X)-\epsilon)+(H(Y)-\epsilon)-(H(X,Y)+\epsilon)\right)} = 2^{-n\left(I(X;Y)-3\epsilon\right)} \\
-p\left[(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(p(x)p(y))\right] &\geq (1-\epsilon)2^{-n\left((H(X)+\epsilon)+(H(Y)+\epsilon)-(H(X,Y)-\epsilon)\right)} = (1-\epsilon)2^{-n\left(I(X;Y)+3\epsilon\right)}
+p\left[(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(\textcolor{red}{P_{X,Y}})\right] &\leq 2^{-n\left((H(X)-\epsilon)+(H(Y)-\epsilon)-(H(X,Y)+\epsilon)\right)} = 2^{-n\left(I(X;Y)-3\epsilon\right)} \\
+p\left[(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(\textcolor{red}{P_{X,Y}})\right] &\geq (1-\epsilon)2^{-n\left((H(X)+\epsilon)+(H(Y)+\epsilon)-(H(X,Y)-\epsilon)\right)} = (1-\epsilon)2^{-n\left(I(X;Y)+3\epsilon\right)}
 \end{align*}
 合并可得
-$$(1-\epsilon)2^{-n\left(I(X;Y)+3\epsilon\right)} \leq p\left[(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(p(x)p(y))\right] \leq 2^{-n\left(I(X;Y)-3\epsilon\right)}$$
+$$(1-\epsilon)2^{-n\left(I(X;Y)+3\epsilon\right)} \leq p\left[(\tilde{x}^n,\tilde{y}^n)\in A_{\epsilon}^{(n)}(\textcolor{red}{P_{X,Y}})\right] \leq 2^{-n\left(I(X;Y)-3\epsilon\right)}$$
 
 \textcolor{red}{2个序列基于joint distribution $p_{X,Y}(x,y)$产生, 则这2个序列是jointly typical的概率趋近于$1$.}
 
@@ -71,8 +71,8 @@ $$(1-\epsilon)2^{-n\left(I(X;Y)+3\epsilon\right)} \leq p\left[(\tilde{x}^n,\tild
 \begin{example}
 若 $(\tilde{x}^n,\tilde{y}^n,\tilde{z}^n)$ 的产生方式为 $(\tilde{x}^n,\tilde{y}^n)\stackrel{i.i.d.}{\sim}p(x)p(y)$, $\tilde{z}^n\sim p(z^n|y^n)$, 则
 \begin{align*}
-p\left[(\tilde{x}^n,\tilde{y}^n,\tilde{z}^n)\in A_{\epsilon}^{(n)}\right] &= \sum_{(\tilde{x}^n,\tilde{y}^n,\tilde{z}^n)\in A_{\epsilon}^{(n)}}p(\tilde{x}^n,\tilde{y}^n)p(\tilde{z}^n|\tilde{y}^n,\tilde{x}^n) \\
-&= \left|A_{\epsilon}^{(n)}\right| p(\tilde{x}^n,\tilde{y}^n)p(\tilde{z}^n|\tilde{y}^n) \\
+p\left[(\tilde{x}^n,\tilde{y}^n,\tilde{z}^n)\in A_{\epsilon}^{(n)}(\textcolor{red}{P_{X,Y,Z}})\right] &= \sum_{(\tilde{x}^n,\tilde{y}^n,\tilde{z}^n)\in A_{\epsilon}^{(n)}}p(\tilde{x}^n,\tilde{y}^n)p(\tilde{z}^n|\tilde{y}^n,\tilde{x}^n) \\
+&= \left|A_{\epsilon}^{(n)}(\textcolor{red}{P_{X,Y,Z}})\right| p(\tilde{x}^n,\tilde{y}^n)p(\tilde{z}^n|\tilde{y}^n) \\
 &\approx 2^{n\left(H(X,Y,Z)\right)}2^{-n\left(H(X,Y)\right)}2^{-n\left(H(Z|Y)\right)} \\
 &= 2^{-n\left(I(X;Z|Y)\right)}
 \end{align*}

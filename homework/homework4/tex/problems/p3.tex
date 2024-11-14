@@ -1,0 +1,42 @@
+\textcolor{blue}{Problem 3}
+
+7.4 Channel capacity. Consider the discrete memoryless channel $Y=X+Z(\bmod\ 11)$, where
+
+$$
+Z=\left(\begin{array}{lll}
+1 & 2 & 3 \\
+\frac{1}{3} & \frac{1}{3} & \frac{1}{3}
+\end{array}\right)
+$$
+
+and $X \in\{0,1, \ldots, 10\}$. Assume that $Z$ is independent of $X$.
+
+(a) Find the capacity.
+
+(b) What is the maximizing $p^*(x)$ ?
+
+\textcolor{blue}{Solution}
+
+(a) Since $Y=X+Z(\bmod\ 11)$, i.e. $Z=Y-X+11(\bmod\ 11)$. And $X\perp Z$, so
+\begin{align*}
+H(Y|X)=H(Z|X) &= H(Z)=H\left(\dfrac{1}{3},\dfrac{1}{3},\dfrac{1}{3}\right)=\log 3 \\
+I(X;Y) &= H(Y)-H(Y|X) \\
+&= H(Y) - \log 3 \\
+&\leq \log 11 - \log 3
+\end{align*}
+
+When $Y\sim DUnif\left(11\right)$, the inequality takes equality. And we can prove that $Y$ could get such distribution with certern $p^*(x)$ in (b).
+
+So the channel capacity is $C=\max\limits_{p(x)}I(X;Y)=\log \dfrac{11}{3}$ bits.
+
+(b) Then we prove that we can construct $p^*(x)$, s.t. $\forall y=0,\ldots,10$, $P(Y=y)=\dfrac{1}{11}$. \\
+We define $p_x=P(X=x)=\dfrac{1}{11}$. Then we have
+\begin{align*}
+P(Y=y) &= \sum_{x}P(X=x)P(Y=y|X=x) \\
+&= \dfrac{1}{3}p_{(y+8)\text{mod\ } 11} + \dfrac{1}{3}p_{(y+9)\text{mod\ } 11} + \dfrac{1}{3}p_{(y+10)\text{mod\ } 11} \\
+&= 3 * \dfrac{1}{3} * \dfrac{1}{11} \\
+&= \dfrac{1}{11}
+\end{align*}
+So above all, we have proved that $p^*(x)=\dfrac{1}{11}, \forall x=0, \ldots, 10$ is the maximizing $p(x)$.
+
+\newpage

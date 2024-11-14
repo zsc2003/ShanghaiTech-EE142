@@ -1,0 +1,77 @@
+\textcolor{blue}{Problem 6}
+
+7.37 Joint typicality. Let $\left(X_i, Y_i, Z_i\right)$ be i.i.d. according to $p(x, y, z)$. We will say that $\left(x^n, y^n, z^n\right)$ is jointly typical [written $\left(x^n, y^n, z^n\right) \in A_\epsilon^{(n)}$] if
+\begin{itemize}
+\item $p\left(x^n\right) \in 2^{-n(H(X) \pm \epsilon)}$.
+\item $p\left(y^n\right) \in 2^{-n(H(Y) \pm \epsilon)}$.
+\item $p\left(z^n\right) \in 2^{-n(H(Z) \pm \epsilon)}$.
+\item $p\left(x^n, y^n\right) \in 2^{-n(H(X, Y) \pm \epsilon)}$.
+\item $p\left(x^n, z^n\right) \in 2^{-n(H(X, Z) \pm \epsilon)}$.
+\item $p\left(y^n, z^n\right) \in 2^{-n(H(Y, Z) \pm \epsilon)}$.
+\item $p\left(x^n, y^n, z^n\right) \in 2^{-n(H(X, Y, Z) \pm \epsilon)}$.
+\end{itemize}
+
+Now suppose that $\left(\tilde{X}^n, \tilde{Y}^n, \tilde{Z}^n\right)$ is drawn according to $p\left(x^n\right) p\left(y^n\right)$ $p\left(z^n\right)$. Thus, $\tilde{X}^n, \tilde{Y}^n, \tilde{Z}^n$ have the same marginals as $p\left(x^n, y^n, z^n\right)$ but are independent. Find (bounds on) $\operatorname{Pr}\left\{\left(\tilde{X}^n, \tilde{Y}^n, \tilde{Z}^n\right) \in A_\epsilon^{(n)}\right\}$ in terms of the entropies $H(X), H(Y), H(Z), H(X, Y), H(X, Z)$, $H(Y, Z)$, and $H(X, Y, Z)$.
+
+\textcolor{blue}{Solution}
+
+From the definition of jointly typicality, we have in probability:
+\begin{align*}
+-\dfrac{1}{n}\log p(x^n)\to H(X), -\dfrac{1}{n}\log p(y^n) \to H(Y), -\dfrac{1}{n}\log p(z^n) \to H(Z), -\dfrac{1}{n}\log p(x^n,y^n)\to H(X,Y) \\
+-\dfrac{1}{n}\log p(x^n,z^n)\to H(X,Z), -\dfrac{1}{n}\log p(y^n,z^n) \to H(Y,Z), -\dfrac{1}{n}\log p(x^n,y^n,z^n)\to H(X,Y,Z)
+\end{align*}
+i.e. $\exists N_1,\ldots,N_7\in\mathbb{N}$, s.t.
+\begin{align*}
+\Pr\left[\left|-\dfrac{1}{n}\log p(x^n)-H(X)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{7} \text{\qquad for } n\geq N_1 \\
+\Pr\left[\left|-\dfrac{1}{n}\log p(y^n)-H(Y)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{7} \text{\qquad for } n\geq N_2 \\
+\Pr\left[\left|-\dfrac{1}{n}\log p(z^n)-H(Z)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{7} \text{\qquad for } n\geq N_3 \\
+\Pr\left[\left|-\dfrac{1}{n}\log p(x^n,y^n)-H(X,Y)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{7} \text{\qquad for } n\geq N_4 \\
+\Pr\left[\left|-\dfrac{1}{n}\log p(x^n,z^n)-H(X,Z)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{7} \text{\qquad for } n\geq N_5 \\
+\Pr\left[\left|-\dfrac{1}{n}\log p(y^n,z^n)-H(Y,Z)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{7} \text{\qquad for } n\geq N_6 \\
+\Pr\left[\left|-\dfrac{1}{n}\log p(x^n,y^n,z^n)-H(X,Y,Z)\right| \geq \epsilon\right] &< \delta = \dfrac{\epsilon}{7} \text{\qquad for } n\geq N_7
+\end{align*}
+Then let $N=\max\{N_1,\ldots,N_7\}$, we have $\forall n\geq N$:
+\begin{align*}
+p\left(x^n\notin A_{\epsilon}^{(n)}(p_X)\right)<\dfrac{\epsilon}{7}, \quad p\left(y^n\notin A_{\epsilon}^{(n)}(p_Y)\right)<\dfrac{\epsilon}{7}, \quad p\left(z^n\notin A_{\epsilon}^{(n)}(p_Z)\right)<\dfrac{\epsilon}{7}, \quad p\left(\left(x^n,y^n\right)\notin A_{\epsilon}^{(n)}(p_{X,Y})\right)<\dfrac{\epsilon}{7} \\
+p\left(\left(x^n,z^n\right)\notin A_{\epsilon}^{(n)}(p_{X,Z})\right)<\dfrac{\epsilon}{7}, \quad p\left(\left(y^n,z^n\right)\notin A_{\epsilon}^{(n)}(p_{Y,Z})\right)<\dfrac{\epsilon}{7}, \quad p\left(\left(x^n,y^n,z^n\right)\notin A_{\epsilon}^{(n)}(p_{X,Y,Z})\right)<\dfrac{\epsilon}{7}
+\end{align*}
+Then we have
+\begin{align*}
+p\left[\left(x^n,y^n,z^n\right)\in A_{\epsilon}^{(n)}(P_{X,Y,Z})\right] &= 1 - p\left[\left(x^n,y^n,z^n\right)\notin A_{\epsilon}^{(n)}(P_{X,Y,Z})\right] \\
+&\geq 1 - p\left(x^n\notin A_{\epsilon}^{(n)}(P_X)\right) - p\left(y^n\notin A_{\epsilon}^{(n)}(P_Y)\right) - p\left(z^n\notin A_{\epsilon}^{(n)}(P_Z)\right) \\
+&\quad - p\left(\left(x^n,y^n\right)\notin A_{\epsilon}^{(n)}(P_{X,Y})\right) - p\left(\left(x^n,z^n\right)\notin A_{\epsilon}^{(n)}(P_{X,Z})\right) - p\left(\left(y^n,z^n\right)\notin A_{\epsilon}^{(n)}(P_{Y,Z})\right) \\
+&\quad - p\left(\left(x^n,y^n,z^n\right)\notin A_{\epsilon}^{(n)}(P_{X,Y,Z})\right) \text{\ (against any of the requirements of jointly typical set)} \\
+&\geq 1 - \dfrac{\epsilon}{7}\times 7 = 1 - \epsilon \to 1 \text{\qquad as } n\to\infty
+\end{align*}
+
+With $p\left[\left(x^n,y^n,z^n\right)\in A_{\epsilon}^{(n)}(P_{X,Y,Z})\right]\geq 1-\epsilon$, we can get the lower bound of $\left|A_{\epsilon}^{(n)}(P_{X,Y,Z})\right|$:
+\begin{align*}
+1-\epsilon &\leq p\left[\left(x^n,y^n,z^n\right)\in A_{\epsilon}^{(n)}(P_{X,Y,Z})\right] \\
+&= \sum_{\left(x^n,y^n,z^n\right)\in A_{\epsilon}^{(n)}(P_{X,Y,Z})} p\left(x^n,y^n,z^n\right) \\
+&\leq \left|A_{\epsilon}^{(n)}(P_{X,Y,Z})\right| 2^{-n(H(X,Y,Z)-\epsilon)}
+\end{align*}
+So the lower bound of $\left|A_{\epsilon}^{(n)}(P_{X,Y,Z})\right|$ is
+$$(1-\epsilon)2^{n(H(X,Y,Z)-\epsilon)}\leq \left|A_{\epsilon}^{(n)}(P_{X,Y,Z})\right|$$
+
+As for the Upper bound of $\left|A_{\epsilon}^{(n)}(P_{X,Y,Z})\right|$, we have
+\begin{align*}
+1 &= \sum_{\left(x^n,y^n,z^n\right)} p\left(x^n,y^n,z^n\right) \\
+&\geq \sum_{\left(x^n,y^n,z^n\right)\in A_{\epsilon}^{(n)}(P_{X,Y,Z})} p\left(x^n,y^n,z^n\right) \\
+&\geq \left|A_{\epsilon}^{(n)}(P_{X,Y,Z})\right| 2^{-n(H(X,Y,Z)+\epsilon)}
+\end{align*}
+So the upper bound of $\left|A_{\epsilon}^{(n)}(P_{X,Y,Z})\right|$ is
+$$2^{n(H(X,Y,Z)+\epsilon)}\geq \left|A_{\epsilon}^{(n)}(P_{X,Y,Z})\right|$$
+
+Therefore, we have
+$$2^{n(H(X,Y,Z)-\epsilon)}\leq \left|A_{\epsilon}^{(n)}(P_{X,Y,Z})\right|\leq 2^{n(H(X,Y,Z)+\epsilon)}$$
+
+Then for the bound of $\Pr\left\{\left(\tilde{X}^n, \tilde{Y}^n, \tilde{Z}^n\right) \in A_\epsilon^{(n)}(P_{X,Y,Z})\right\}$, we have
+\begin{align*}
+\Pr\left\{\left(\tilde{X}^n, \tilde{Y}^n, \tilde{Z}^n\right) \in A_\epsilon^{(n)}(P_{X,Y,Z})\right\} &= \sum_{\left(x^n,y^n,z^n\right)\in A_{\epsilon}^{(n)}(P_{X,Y,Z})} p\left(x^n\right)p\left(y^n\right)p\left(z^n\right) = \left|A_{\epsilon}^{(n)}(P_{X,Y,Z})\right| p\left(x^n\right)p\left(y^n\right)p\left(z^n\right) \\
+&\in \left[(1-\epsilon)2^{n(H(X,Y,Z)-\epsilon)}\cdot 2^{-n(H(X)+\epsilon)}\cdot 2^{-n(H(Y)+\epsilon)}\cdot 2^{-(nH(Z)+\epsilon)}\right., \\
+&\qquad \left. 2^{n(H(X,Y,Z)+\epsilon)}\cdot 2^{-n(H(X)-\epsilon)}\cdot 2^{-n(H(Y)-\epsilon)}\cdot 2^{-(nH(Z)-\epsilon)}\right] \\
+&= \left[(1-\epsilon)2^{n(H(X,Y,Z)-H(X)-H(Y)-H(Z)-4\epsilon)}, 2^{n(H(X,Y,Z)-H(X)-H(Y)-H(Z)+4\epsilon)}\right]
+\end{align*}
+
+So above all, the bound of $\Pr\left\{\left(\tilde{X}^n, \tilde{Y}^n, \tilde{Z}^n\right) \in A_\epsilon^{(n)}(P_{X,Y,Z})\right\}$ is
+$$(1-\epsilon)2^{n(H(X,Y,Z)-H(X)-H(Y)-H(Z)-4\epsilon)} \leq \Pr\left\{\left(\tilde{X}^n, \tilde{Y}^n, \tilde{Z}^n\right) \in A_\epsilon^{(n)}(P_{X,Y,Z})\right\} \leq 2^{n(H(X,Y,Z)-H(X)-H(Y)-H(Z)+4\epsilon)}$$

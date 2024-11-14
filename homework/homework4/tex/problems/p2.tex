@@ -1,0 +1,31 @@
+\textcolor{blue}{Problem 2}
+
+7.3 Channels with memory have higher capacity. Consider a binary symmetric channel with $Y_i=X_i \oplus Z_i$, where $\oplus$ is $\bmod\ 2$ addition, and $X_i, Y_i \in\{0,1\}$. Suppose that $\left\{Z_i\right\}$ has constant marginal probabilities $\operatorname{Pr}\left\{Z_i=1\right\}=p=1-\operatorname{Pr}\left\{Z_i=0\right\}$, but that $Z_1, Z_2$, $\ldots, Z_n$ are not necessarily independent. Assume that $Z^n$ is independent of the input $X^n$. Let $C=1-H(p, 1-p)$. Show that
+$$\max\limits_{p\left(x_1, x_2, \ldots, x_n\right)} I\left(X_1, X_2, \ldots, X_n ; Y_1, Y_2, \ldots Y_n\right) \geq n C$$
+
+\textcolor{blue}{Solution}
+
+Since $Y_i=X_i \oplus Z_i\Rightarrow Z_i = X_i \oplus Y_i$, so $p(X^n|Y^n)=p(Z^n|Y^n)$. Then we have
+\begin{align*}
+I(X^n;Y^n) &= H(X^n) - H(X^n|Y^n) \\
+&= H(X^n) - H(Z^n|Y^n) \text{\qquad\ ($p(X^n|Y^n)=p(Z^n|Y^n)$)} \\
+&\geq H(X^n) - H(Z^n) \text{\qquad\qquad (Conditioning reduces entropy)} \\
+&= H(X^n) -\sum_{i=1}^n H(Z_i|Z_1, \ldots, Z_{i-1}) \\
+&\geq H(X^n) -\sum_{i=1}^n H(Z_i) \text{\qquad\quad (Conditioning reduces entropy)} \\
+&= H(X^n) - nH\left(p,1-p\right)
+\end{align*}
+And since $\left|\mathcal{X}\right|=2$, so we have
+$$H(X^n)=\sum\limits_{i=1}^n H(X_i|X_1,\ldots,X_{i-1}) \leq \sum\limits_{i=1}^n H(X_i) \leq \sum\limits_{i=1}^n \log \left|\mathcal{X}\right| = n$$
+When $X_i$ are independent, and $P(X_i=0)=P(X_i=1)=\dfrac{1}{2}$, the inequality holds the equality. \\
+So
+\begin{align*}
+\max\limits_{p\left(x_1, x_2, \ldots, x_n\right)} I\left(X_1, X_2, \ldots, X_n ; Y_1, Y_2, \ldots Y_n\right) &\geq \max_{p(X^n)} \left(H(X^n) - nH\left(p,1-p\right)\right) \\
+&= n - nH\left(p,1-p\right) \\
+&= n\left(1 - H\left(p,1-p\right)\right) \\
+&= nC
+\end{align*}
+
+So above all, we have proved that when $X_i\stackrel{i.i.d.}{\sim} \text{Bern}\left(\dfrac{1}{2}\right)$, the `$\max$' could be taken, and
+$$\max\limits_{p\left(x_1, x_2, \ldots, x_n\right)} I\left(X_1, X_2, \ldots, X_n ; Y_1, Y_2, \ldots Y_n\right) \geq n C$$
+
+\newpage

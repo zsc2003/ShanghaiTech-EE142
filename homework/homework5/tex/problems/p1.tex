@@ -1,0 +1,58 @@
+\textcolor{blue}{Problem 1}
+
+8.1 Differential entropy. Evaluate the differential entropy $h(X)=$ $-\int f \ln f$ for the following:
+
+(a) The exponential density, $f(x)=\lambda e^{-\lambda x}, x \geq 0$.
+
+(b) The Laplace density, $f(x)=\frac{1}{2} \lambda e^{-\lambda|x|}$.
+
+(c) The sum of $X_1$ and $X_2$, where $X_1$ and $X_2$ are independent normal random variables with means $\mu_i$ and variances $\sigma_i^2, i=$ $1,2$.
+
+\textcolor{blue}{Solution}
+
+(a) $X\sim f(x)=\lambda e^{-\lambda x}$, so we have
+\begin{align*}
+\mathbb{E}(X) &= \int_0^{+\infty} x\left(\lambda e^{-\lambda x}\right)dx \\
+&= \lambda\int_0^{+\infty} x \left(-\dfrac{1}{\lambda}\right)d\left(e^{-\lambda x}\right) \\
+&= \left. -xe^{-\lambda x} \right|_0^{+\infty} + \int_0^{+\infty} e^{-\lambda x}dx \\
+&= 0 + \left.\left(-\dfrac{1}{\lambda}\right) e^{-\lambda x} \right|_0^{+\infty} \\
+&= \dfrac{1}{\lambda}
+\end{align*}
+So we can get that
+\begin{align*}
+h(X) &= -\int_0^{+\infty} f(x)\ln f(x)dx = -\int_0^{+\infty} \lambda e^{-\lambda x} \ln \left(\lambda e^{-\lambda x}\right)dx \\
+&= -\int_0^{+\infty} \lambda e^{-\lambda x} (\ln \lambda - \lambda x)dx \\
+&= \left(-\ln \lambda\right) \int_0^{+\infty} \lambda e^{-\lambda x}dx + \lambda \int_0^{+\infty} x\left(\lambda e^{-\lambda x}\right)dx \\
+&= -\ln \lambda + \lambda\mathbb{E}(X) \qquad \text{($\int_0^{+\infty} \lambda e^{-\lambda x}dx$ is the integration of PDF of $X$ on its support, so it is $1$)} \\
+&= \ln\left(\dfrac{e}{\lambda}\right) \text{nats} \\
+&= \log\left(\dfrac{e}{\lambda}\right) \text{bits}
+\end{align*}
+
+(b) $X\sim f(x)=\dfrac{1}{2}\lambda e^{-\lambda|x|}$, so we have
+\begin{align*}
+h(X) &= -\int_{-\infty}^{+\infty} f(x)\ln f(x)dx = -\int_{-\infty}^{+\infty} \dfrac{1}{2}\lambda e^{-\lambda|x|} \ln \left(\dfrac{1}{2}\lambda e^{-\lambda|x|}\right)dx \\
+&= -2\int_{0}^{+\infty} \dfrac{1}{2}\lambda e^{-\lambda x} \left(\ln\left(\dfrac{\lambda}{2}\right) -\lambda x\right)dx \qquad \text{(The integrated function is a even function)} \\
+&= -\ln\left(\dfrac{\lambda}{2}\right) \int_{0}^{+\infty}\underbrace{ \lambda e^{-\lambda x} }_{\text{Expo(X)'s PDF}}dx + \lambda\underbrace{ \int_{0}^{+\infty} x \left(\lambda e^{-\lambda x}\right) dx}_{\text{Expo(X)'s expectation}} \\
+&= \ln\left(\dfrac{2}{\lambda}\right)\cdot 1 + \lambda\cdot \dfrac{1}{\lambda} = \ln\left(\dfrac{2e}{\lambda}\right) \text{nats} \\
+&= \log\left(\dfrac{2e}{\lambda}\right) \text{bits}
+\end{align*}
+
+(c) $X_1\sim \mathcal{N}(\mu_1, \sigma_1^2)$, $X_2\sim \mathcal{N}(\mu_2, \sigma_2^2)$, so we have $X=X_1+X_2\sim \mathcal{N}(\mu_1+\mu_2, \sigma_1^2+\sigma_2^2)$, i.e. $X\sim \mathcal{N}(\mu, \sigma^2)$, where $\mu=\mu_1+\mu_2$ and $\sigma^2=\sigma_1^2+\sigma_2^2$. \\
+So we have
+$$X\sim f(x) = \dfrac{1}{\sqrt{2\pi}\sigma} \exp\left(-\dfrac{(x-\mu)^2}{2\sigma^2}\right)$$
+So we have the variance of $X$:
+$$\sigma^2 = \mathbb{E}_{X\sim f(x)} = \mathbb{E}_{X\sim f(x)}\left(X-\mathbb{E}(X)\right)^2 = \mathbb{E}_{X\sim f(x)}\left(X-\mu\right)^2=\int_{-\infty}^{+\infty} (x-\mu)^2 f(x)dx$$
+So we can get that
+\begin{align*}
+h(X) &= -\int_{-\infty}^{+\infty} f(x)\ln f(x)dx \\
+&= -\int_{-\infty}^{+\infty} f(x) \ln \left(\dfrac{1}{\sqrt{2\pi}\sigma} \exp\left(-\dfrac{(x-\mu)^2}{2\sigma^2}\right)\right)dx \\
+&= \ln\left(\sqrt{2\pi}\sigma\right)\int_{-\infty}^{+\infty} f(x) dx + \dfrac{1}{2\sigma^2}\int_{-\infty}^{+\infty} (x-\mu)^2 f(x)dx \\
+&= \ln\left(\sqrt{2\pi}\sigma\right) + \dfrac{1}{2\sigma^2}\sigma^2 \\
+&= \dfrac{1}{2}\ln\left(2\pi\sigma^2\right) + \dfrac{1}{2} \\
+&= \dfrac{1}{2}\ln\left(2\pi e\sigma^2\right) \text{nats} \\
+&= \dfrac{1}{2}\log\left(2\pi e\sigma^2\right) \text{bits}
+\end{align*}
+
+i.e. $h(X) = \dfrac{1}{2}\log\left(2\pi e\left(\sigma_1^2+\sigma_2^2\right)\right)$ bits.
+
+\newpage

@@ -1,0 +1,50 @@
+\textcolor{blue}{Problem 4}
+
+8.9 Gaussian mutual information. Suppose that $(X, Y, Z)$ are jointly Gaussian and that $X \rightarrow Y \rightarrow Z$ forms a Markov chain. Let $X$ and $Y$ have correlation coefficient $\rho_1$ and let $Y$ and $Z$ have correlation coefficient $\rho_2$. Find $I(X ; Z)$.
+
+\textcolor{blue}{Solution}
+
+From what we have learned in the probability and statistics course, we know that the Minimum Mean Square Error Estimator (MMSE) of $X$ given $Y$ is $\mathbb{E}(X|Y)$. And the Linear Square Estimator (LLSE) of $X$ given $Y$ is $L(X|Y)=\mathbb{E}(Y)+\dfrac{\Cov(X,Y)}{\text{Var}(Y)}(Y-\mathbb{E}(Y))$. \\
+Also, when $X,Y$ are the jointly Gaussian random variables, the MMSE of $X$ given $Y$ and the LLSE of $X$ given $Y$ are the same. i.e.
+$$\mathbb{E}(X|Y)=L(X|Y)=\mathbb{E}(Y)+\dfrac{\Cov(X,Y)}{\text{Var}(Y)}(Y-\mathbb{E}(Y))$$
+Suppose $X\sim\mathcal{N}(\mu_X,\sigma_X^2),Y\sim\mathcal{N}(\mu_Y,\sigma_Y^2),Z\sim\mathcal{N}(\mu_Z,\sigma_Z^2)$. \\
+Since phase shifing does not the variance and the covariance of the Gaussian random variables, we can let $\hat{X}=X-\mu_X\sim \mathcal{N}(0,\sigma_X^2),\hat{Y}=Y-\mu_Y\sim \mathcal{N}(0,\sigma_Y^2),\hat{Z}=Z-\mu_Z\sim \mathcal{N}(0,\sigma_Z^2)$. \\
+And since the covariance between a random variable and a constant is $0$, then we have
+$$\Cov\left(\hat{X},\hat{Y}\right)=\Cov(X-\mu_X,Y-\mu_Y)=\Cov(X,Y)-\Cov(\mu_X,Y)-\Cov(X,\mu_Y)+\Cov(\mu_X,\mu_Y)=\Cov(X,Y)=\rho_1\sigma_X\sigma_Y$$
+Similarly, we can get that
+$$\Cov\left(\hat{X},\hat{Z}\right)=\Cov(X,Z)=\rho_{X,Z}\sigma_X\sigma_Z, \Cov\left(\hat{Y},\hat{Z}\right)=\Cov(Y,Z)=\rho_2\sigma_Y\sigma_Z$$
+So we have
+\begin{align*}
+\mathbb{E}(\hat{X}|\hat{Y}) &= \mathbb{E}(\hat{X})+\dfrac{\Cov(\hat{X},\hat{Y})}{\Var(\hat{Y})}\left(\hat{Y}-\mathbb{E}(\hat{Y})\right) = \dfrac{\rho_1\sigma_X}{\sigma_Y}\hat{Y} \\
+\mathbb{E}(\hat{Z}|\hat{Y}) &= \dfrac{\rho_2\sigma_Z}{\sigma_Y}\hat{Y}
+\end{align*}
+Then we can get $\mathbb{E}\left(\hat{X}\hat{Z}\right)$ by applying the Law of Iterated Expectations. And the Markov Chain $\hat{X}\rightarrow\hat{Y}\rightarrow\hat{Z}$ also holds. i.e. $\hat{X}\perp \hat{Z}|\hat{Y}$. So we have
+\begin{align*}
+\mathbb{E}\left(\hat{X}\hat{Z}\right) &= \mathbb{E}\left(\mathbb{E}\left(\hat{X}\hat{Z}|\hat{Y}\right)\right) \qquad\qquad\quad\ \ \text{(Law of Iterated Expectations)} \\
+&= \mathbb{E}\left(\mathbb{E}\left(\hat{X}\big|\hat{Y}\right)\mathbb{E}\left(\hat{Z}\big|\hat{Y}\right)\right) \qquad \left(\text{since } \hat{X}\perp \hat{Z}|\hat{Y}\right) \\
+&= \mathbb{E}\left(\dfrac{\rho_1\sigma_X}{\sigma_Y}\hat{Y}\cdot\dfrac{\rho_2\sigma_Z}{\sigma_Y}\hat{Y}\right) \\
+&= \dfrac{\rho_1\rho_2\sigma_X\sigma_Z}{\sigma_Y^2}\mathbb{E}\left(\hat{Y}^2\right) \\
+&= \dfrac{\rho_1\rho_2\sigma_X\sigma_Z}{\sigma_Y^2}\sigma_Y^2  \qquad\qquad\qquad \left(\text{since } \mathbb{E}\left(\hat{Y}\right)=0\Rightarrow \mathbb{E}\left(\hat{Y}^2\right)=\Var\left(\hat{Y}\right)\right) \\
+&= \rho_1\rho_2\sigma_X\sigma_Z
+\end{align*}
+
+So
+$$\rho_{X,Z} = \dfrac{\mathbb{E}\left(\hat{X}\hat{Z}\right)}{\sigma_X\sigma_Z}= \dfrac{\rho_1\rho_2\sigma_X\sigma_Z}{\sigma_X\sigma_Z} = \rho_1\rho_2$$
+
+And we have known that the entropy of a Gaussian distribution $X\sim\mathcal{N}(\mu_X,\sigma_X^2)$ is $h(X)=\dfrac{1}{2}\ln\left(2\pi e\sigma_X^2\right)$.
+
+And the entropy of $n$ random variable's jointly Gaussian with covariance matrix $\mathbf{K}$ is $\dfrac{1}{2}\ln\left((2\pi e)^n|\mathbf{K}|\right)$.
+
+And since the covariance matrix of $X$ and $Z$ is that
+$$\mathbf{K}=\begin{bmatrix}
+\sigma_X^2 & \rho_{X,Z}\sigma_X\sigma_Z \\
+\rho_{X,Z}\sigma_X\sigma_Z & \sigma_Z^2
+\end{bmatrix}$$
+So we can get that
+\begin{align*}
+I(X;Z) &= h(X)+h(Z)-h(X,Z) \\
+&= \dfrac{1}{2}\ln\left(2\pi e\sigma_X^2\right)+\dfrac{1}{2}\ln\left(2\pi e\sigma_Z^2\right)-\dfrac{1}{2}\ln\left((2\pi e)^2|\mathbf{K}|\right) \\
+&= \dfrac{1}{2}\ln\left(\dfrac{\sigma_X^2\sigma_Z^2}{\sigma_X^2\sigma_Z^2-\rho_{X,Z}^2\sigma_X^2\sigma_Z^2}\right) \\
+&= \dfrac{1}{2}\ln\left(\dfrac{1}{1-\rho_{X,Z}^2}\right) \\
+&= -\dfrac{1}{2}\ln\left(1-\rho_1^2\rho_2^2\right)
+\end{align*}

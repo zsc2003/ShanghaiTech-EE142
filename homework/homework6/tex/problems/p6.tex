@@ -1,0 +1,80 @@
+\textcolor{blue}{Problem 6}
+
+9.15 Discrete input, continuous output channel. Let $\operatorname{Pr}\{X=1\}=p$, $\operatorname{Pr}\{X=0\}=1-p$, and let $Y=X+Z$, where $Z$ is uniform over the interval $[0, a], a>1$, and $Z$ is independent of $X$.
+
+(a) Calculate $$I(X ; Y)=H(X)-H(X \mid Y)$$
+
+(b) Now calculate $I(X ; Y)$ the other way by $$I(X ; Y)=h(Y)-h(Y \mid X)$$
+
+(c) Calculate the capacity of this channel by maximizing over $p$.
+
+\textcolor{blue}{Solution}
+
+Since $Z\sim\text{Unif}(0,a)$, so $f_Z(z)=\dfrac{1}{a}, 0\leq z\leq a$. \\
+Then we can calculate $f_Y(y)$ by
+$$f_Y(y)=\sum_{x=0,1}f_{Y|X}(y|X=x)p(X=x)=\sum_{x=0,1}f_{Z}(y-x)p(X=x)$$
+1. When $x=0$: \\
+<1> when $y-x\in[0,a]\Rightarrow y\in[0,a]\Rightarrow f_Z(y-x)=\dfrac{1}{a}$ \\
+<2> otherwise, $f_Z(y-x)=0$ \\
+So we have
+$$f_{Y|X=0}(y)=\begin{cases}
+\dfrac{1}{a}, & 0\leq y\leq a \\
+0, & \text{otherwise}
+\end{cases}$$
+2. When $x=1$: \\
+<1> when $y-x\in[0,a]\Rightarrow y\in[1,a+1]\Rightarrow f_Z(y-x)=\dfrac{1}{a}$ \\
+<2> otherwise, $f_Z(y-x)=0$ \\
+So we have
+$$f_{Y|X=1}(y)=\begin{cases}
+\dfrac{1}{a}, & 1\leq y\leq a+1 \\
+0, & \text{otherwise}
+\end{cases}$$
+And since $a>1$, and combined with what we have, we can get that:
+$$f_Y(y)=\begin{cases}
+\frac{1-p}{a}, & 0\leq y< 1 \\
+\frac{1}{a}, & 1\leq y\leq a \\
+\frac{p}{a}, & a< y\leq a+1 \\
+0, & \text{otherwise}
+\end{cases}$$
+
+(a) Since $X\sim\text{Bern}(p)$, so $H(X)=H(p)$.
+
+1. When $y\in[0,a]$, $X$ is deterministic, i.e. $X=0$.
+
+2. When $y\in[a,a+1]$, $X$ is deterministic, i.e. $X=1$. \\
+So in these two cases, $H(X|Y=y)=0$.
+
+3. When $y\in[1,a]$: \\
+Since $P(X=0|Y=y)=\dfrac{f_{Y|X=0}(y)p(X=0)}{f_Y(y)}=\dfrac{\frac{1}{a}(1-p)}{\frac{1}{a}}=1-p$, i.e. $H(X|Y=y)=H(p)$. \\
+So we can get that
+\begin{align*}
+H(X|Y) &= \int_{0}^{a+1}H(X|Y=y)f_Y(y)\dy \\
+&= \int_{0}^{1}H(X|Y=y)f_Y(y)\dy+\int_{1}^{a}H(X|Y=y)f_Y(y)\dy+\int_{a}^{a+1}H(X|Y=y)f_Y(y)\dy \\
+&= \int_{0}^{1}0\cdot f_Y(y)\dy+\int_{1}^{a}H(p)\cdot \dfrac{1}{a}\dy+\int_{a}^{a+1}0\cdot f_Y(y)\dy \\
+&= \dfrac{a-1}{a}H(p)
+\end{align*}
+
+So above all, we can get that
+$$I(X;Y)=H(X)-H(X|Y)=H(p)-\dfrac{a-1}{a}H(p)=\dfrac{1}{a}H(p)$$
+
+(b) $I(X;Y) = h(Y)-h(Y|X)$
+\begin{align*}
+h(Y) &= -\int_{0}^{a+1}f_Y(y)\log f_Y(y)\dy \\
+&= -\int_{0}^{1}\dfrac{1-p}{a}\log\dfrac{1-p}{a}\dy-\int_{1}^{a}\dfrac{1}{a}\log\dfrac{1}{a}\dy-\int_{a}^{a+1}\dfrac{p}{a}\log\dfrac{p}{a}\dy \\
+&= -\dfrac{1-p}{a}\log\dfrac{1-p}{a}-(a-1)\dfrac{1}{a}\log\dfrac{1}{a}-\dfrac{p}{a}\log\dfrac{p}{a} \\
+&= \dfrac{1}{a}H(p) + \log a
+\end{align*}
+Since $Y=X+Z$, and $X\perp Z$, $Z\sim\text{Unif}(0,a)$, so
+$$h(Y|X)=h(Z|X)=h(Z)=\log a$$
+So above all, we can get that
+$$I(X;Y)=h(Y)-h(Y|X)=\dfrac{1}{a}H(p)$$
+
+(c) Let $C$ be the capacity of this channel, then
+\begin{align*}
+C &= \max_{p(x)}\ I(X;Y) \\
+&= \max_{p(x)}\ \dfrac{1}{a}H(p) \\
+&= \dfrac{1}{a}H\left(\dfrac{1}{2}\right) \\
+&= \dfrac{1}{a}
+\end{align*}
+
+So above all, the channel capacity is $\dfrac{1}{a}$, when $p(x)=\left(\dfrac{1}{2},\dfrac{1}{2}\right)$ it achieves.

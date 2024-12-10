@@ -1,0 +1,34 @@
+\textcolor{blue}{Problem 4}
+
+9.6 Parallel channels and water-filling. Consider a pair of parallel Gaussian channels:
+$$\left(\begin{array}{c}Y_1 \\ Y_2 \end{array}\right)=\left(\begin{array}{c}X_1 \\ X_2 \end{array}\right)+\left(\begin{array}{c}Z_1 \\ Z_2 \end{array}\right)$$
+
+where
+
+$$\left(\begin{array}{c}Z_1 \\ Z_2 \end{array}\right) \sim \mathcal{N}\left(0,\left[\begin{array}{cc}
+\sigma_1^2 & 0 \\
+0 & \sigma_2^2
+\end{array}\right]\right)$$
+
+and there is a power constraint $\mathbb{E}\left(X_1^2+X_2^2\right) \leq 2 P$. Assume that $\sigma_1^2>\sigma_2^2$. At what power does the channel stop behaving like a single channel with noise variance $\sigma_2^2$, and begin behaving like a pair of channels?
+
+\textcolor{blue}{Solution}
+
+From what we have learned about the parallel channels, we know that the capacity of the parallel channels is
+$$C=\sum_{i=1}^2\dfrac{1}{2}\log\left(1+\dfrac{P_i}{\sigma_i^2}\right)$$
+Where $\sum\limits_{i=1}^2P_i\leq 2P$. \\
+And with water-filling method, we have $P_i=\left(\nu-\sigma_i^2\right)_+$, $P_1+P_2\leq 2P$ and $\nu$ is the water level, $(\cdot)_+=\max(\cdot, 0)$.
+
+Since $\sigma_1^2>\sigma_2^2$, so
+
+1. When $\nu\in(\sigma_2^2,\sigma_1^2]\Rightarrow P_1=0,P_2=\nu-\sigma_2^2$ \\
+$\Rightarrow 2P=P_1+P_2\in(0,\sigma_1^2-\sigma_2^2)$ \\
+So when $0\leq P\leq \dfrac{\sigma_1^2-\sigma_2^2}{2}$, the channel behaves like a single channel with noise variance $\sigma_2^2$.
+
+2. When $\nu>\sigma_1^2$, we have $P_1=\nu-\sigma_1^2>0,P_2=\nu-\sigma_2^2>0$ \\
+$\Rightarrow 2P=P_1+P_2>2\nu-\sigma_1^2-\sigma_2^2>\sigma_1^2-\sigma_2^2$ \\
+So when $P>\dfrac{\sigma_1^2-\sigma_2^2}{2}$, the channel behaves like a pair of channels.
+
+So when $P=\dfrac{\sigma_1^2-\sigma_2^2}{2}$, the channel stops behaving like a single channel with noise variance $\sigma_2^2$, and begins behaving like a pair of channels.
+
+\newpage

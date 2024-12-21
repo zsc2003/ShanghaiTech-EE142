@@ -1,0 +1,148 @@
+\section{Fano's Inequality, Channel Coding Theorem(Shannon's Second Theorem)}
+简单理解: 从jointly typical set的角度. 在第四章的最后(jointly AEP), 每个$X^n$平均会有$\frac{2^{nH(X,Y)}}{2^{nH(X)}}=2^{nH(Y|X)}$个$Y^n$与之jointly typical, 即将所有的$Y^n$进行划分, 每份的大小为$2^{nH(Y|X)}$, 可以分成 $\frac{2^{nH(Y)}}{2^{nH(Y|X)}}=2^{nI(X;Y)}$份. 这样平均每次用信道发送的bit数为$\frac{2^{nI(X;Y)}}{n}=I(X;Y)$
+
+在保证无损传输的情况下, 信道容量:
+$$C\triangleq\max R=\max\limits_{p(x)}I(X;Y)$$
+
+\begin{definition}
+Channel Coding Theorem(Shannon's Second Theorem) \\
+对于一个rate 为 $R$ 的DMC, 只要$R<C$, 那么这个DMC是 \textcolor{blue}{achievable} 的. i.e. $\forall R<C, \exists$ a sequence of $\left(2^{nR},n\right)$ codes, 使得最大错误概率$\lambda^{(n)}\to 0$. \\
+\textcolor{blue}{Conversely}, 任意sequence of $\left(2^{nR},n\right)$ codes, $\lambda^{(n)}\to 0$, 那么$R\leq C$.
+\end{definition}
+所以证明需要从两个角度: \\
+1. 可达性证明(\textcolor{blue}{achievable} proof): $\forall R<C$, $\exists (R,n)$, s.t. $\lambda^{(n)}\to 0$, 找到一种达到$C$的方法. \\
+2. \textcolor{blue}{converse} proof: 所有方法都不可能超过$C$. i.e. $R>C$时, $p_e^{(n)}\to 1 \Rightarrow R\leq C$时， $p_e^{(n)}\not\to 0$.
+
+
+\textcolor{blue}{1. 可达性证明 achievable proof}:
+
+<1>. 码本构建(randomly coding): fixed $p(x)$, 产生$2^{nR}$个长度为$n$的codewords: $X^n(1),\ldots,X^n(2^{nR})\stackrel{i.i.d.}{\sim}p(X^n)=\prod\limits_{i=1}^np(x_i)$.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{./figures/chapter5/codebook.png}
+\end{figure}
+
+$X_i(w)$表示第$w$个codeword的第$i$个bit(下标为$i$). \\
+码本构建好之后发给发送端和接收端(is known by the encoder and the decoder). 同时, 认为sender和receiver知道channel transition matrix $p(y|x)$.
+
+<2>. Encoder: 随机生成一个数字 $w$, $p(W=w)=\dfrac{1}{2^{nR}}$, 从codebook $\mathcal{C}$中找出第$w$行$X^n(w)$, 发到信道当中.
+
+<3> Decoder: reciver 接收由 $p(y^n|x^n(w))=\prod\limits_{i=1}^np(y_i|x_i(w))$ 生成的 $y^n$, 从codebook中找出一条message $\hat{W}$, s.t. $(X^n(\hat{W}), y^n)\in A_{\epsilon}^{(n)}(P_{X,Y})$, 且 no other index $W'\neq \hat{W}$ s.t. $(X^n(W'), y^n)\in A_{\epsilon}^{(n)}(P_{X,Y})$.
+
+若找不到$\hat{W}$, an error is decleared.
+
+<4> Error probability analysis: \\
+先忽略码本的随机性 ($p(\mathcal{C})=\prod\limits_{w}^{2^{nR}}\prod\limits_{i=1}^np(x_i)(w)$), 考虑单一码本的情况. \\
+发生错误: $\mathcal{E}=\left\{\hat{W}(Y^n) \neq W\right\}$. \\
+考虑定义: $\lambda(i)=\Pr\left[\hat{W}\neq i|W=i\right]$, 则 $\Pr\left[\mathcal{E}|W=i\right]=\lambda(i)$. \\
+$\Rightarrow \Pr\left[\hat{W}\neq W\right]=\sum\limits_{w=1}^{2^{nR}}p(W=w)\lambda(w)=\sum\limits_{w=1}^{2^{nR}}\dfrac{1}{2^{nR}}\lambda(w)$.
+
+由于$W=1,\ldots,2^{nR}$是等概率产生的, 且地位相同, 所以 W.L.O.G. 取 $W=1$时的情况进行分析:
+
+定义事件 $E_i=\left\{\left(X^{n}(i),Y^n\right)\in A_{\epsilon}^{(n)}(P_{X,Y})\right\}$, i.e. the i-th codeword is joint typical with the received sequence $Y^n$. \\
+由jointly AEP, we can get that for sufficiently large $n$:
+$$\Pr\left[E_1^c:\left(X^{n}(i),Y^n\right)\not\in A_{\epsilon}^{(n)}(P_{X,Y}) \right]\to 0 \Rightarrow \Pr\left[E_1^c: \left(X^{n}(i),Y^n\right)\not\in A_{\epsilon}^{(n)}(P_{X,Y})\right]\leq \epsilon$$
+由于生成codebook $\mathcal{C}$时, 每一行的产生是独立的, i.e. $X^n(1)$与$X^n(2),\ldots,X^n(2^{nR})$是独立的, 所以$Y^n$与$X^n(i)$也是独立的, 所以有:
+$$\Pr\left[E_i:\left(X^{n}(i),Y^n\right)\in A_{\epsilon}^{(n)}(P_{X,Y}) \right]\leq 2^{-n\left(I(X;Y)-3\epsilon\right)}$$
+由jointly AEP, 当$R<I(X;Y)-3\epsilon$时
+\begin{align*}
+\Pr\left[\hat{W}\neq 1|W=1\right] &= \Pr\left[E_1^c\cup E_2\cup\ldots\cup E_{2^{nR}}\right] \\
+&\leq \Pr\left[E_1^c\right] + \sum\limits_{w=2}^{2^{nR}}\Pr\left[E_w\right] \\
+&\leq \epsilon + (2^{nR}-1) 2^{-n\left(I(X;Y)-3\epsilon\right)} \\
+&\leq \epsilon + 2^{n\left(R-I(X;Y)+3\epsilon\right)} \\
+&\leq 2\epsilon \quad \text{(sufficiently large $n$, $R<I(X;Y)-3\epsilon\Rightarrow 2^{n\left(R-I(X;Y)+3\epsilon\right)}\to 0<\epsilon$)}
+\end{align*}
+总结: 选择证明中取等时的分布作为真实分布 $p(x)\gets p^*(x)$, 此时$\forall R<I(X;Y)-3\epsilon$, i.e. $R<C$, 错误概率$p_e^{(n)}=\Pr\left[\hat{W}\neq W\right]\to 0\Rightarrow \lambda^{(n)}\to 0$. (Actually, $\lambda^{(n)}$条件比$p_e^{(n)}$更强, 但是$p_e^{(n)}$更容易计算)
+
+若将codebook $\mathcal{C}$ 的随机性也考虑进去, 则会得到更加平均的结果:
+$$\Pr\left[\hat{W}\neq W\right]=\sum_{w=1}^{2^{nR}}\sum_{\mathcal{C}}\Pr[\mathcal{C}]\dfrac{1}{2^{nR}}\lambda_w(\mathcal{C})=\lambda_1(\mathcal{C})\Rightarrow \Pr(\mathcal{E}|\mathcal{C}^*)\leq 2\epsilon$$
+The best codebook $\mathcal{C}^*$ 中必然由超过一半的indices $i$ and their assciated codewords $X^n(i)$, 满足 $\lambda_i\leq 4\epsilon$, 否则$\Pr(\mathcal{E}|\mathcal{C}^*)>2\epsilon$. 砍去另一半codewords, 可以得到rate为$R'=\dfrac{\frac{2^{nR}}{2}}{n}=R-\dfrac{1}{n}$, s.t. $\lambda^{(n)}\leq 4\epsilon\to 0$. 所以可以使得 $\epsilon$ 不断的取小, 说明了$R$可以取到$C$的任意接近的地方.(取$p^*(x)$时, $C=I(X;Y), R=I(X;Y)-3\epsilon\to C$)
+
+由此证明了 Achievability.
+
+\begin{proposition}
+Zero-error codes.
+$$p_e^{(n)}\to 0 \Rightarrow R\leq C$$
+\end{proposition}
+proof: \\
+Channel encoding 满足Markov chain $W\to X^n(W)\to Y^n\to \hat{W}$, so from data-processing inequality:
+$$I(W; Y^n)\leq I(X^n(W); Y^n)$$
+
+由 DMC的 memoryless, i.e. $p(Y_i|Y_1,\ldots,Y_{i-1},X^n)=p(Y_i|X_i)$, so
+\begin{align*}
+I(X^n;Y^n) &= H(Y^n) - H(Y^n|X^n) \\
+&= \sum_{i=1}^nH(Y_i|Y_1,\ldots,Y_{i-1}) - \sum_{i=1}^nH(Y_i|Y_1,\ldots,Y_{i-1}, X^n) \\
+&\leq \sum_{i=1}^nH(Y_i) - \sum_{i=1}^nH(Y_i|X_i) \qquad \text{(memoryless \& conditioning reduced entropy)} \\
+&= \sum_{i=1}^n I(X_i;Y_i) \\
+&\leq nC \qquad\qquad\qquad\qquad\qquad\quad\ \ \text{($Y_i$ are independent, $p_i(x)=p^*(x)$)}
+\end{align*}
+
+Since the channel is zero-error, so $\hat{W}=g(Y^n)=W$, i.e. $H(W|Y^n)=0$.
+\begin{align*}
+nR &= H(W) \\
+&= H(W|Y^n) + I(W;Y^n) \\
+&= I(W;Y^n) \qquad\quad\ \text{($H(W|Y^n)=0$)} \\
+&\leq I(X^n;Y^n) \qquad\quad \text{(data-processing inequality)} \\
+&\leq nC
+\end{align*}
+
+So for any zero-error $\left(2^{nR}, n\right)$ code, for all $n$:
+$$R\leq C$$
+
+\textcolor{blue}{2. converse proof: 证明$R>C$时, $p_e^{(n)}\to 1$ or $p_e^{(n)}\not\to 0$ as $n\to\infty$.}
+
+\begin{definition}
+Fano's Inequality: 是关于$p_e$的函数, 建立条件熵和错误概率$p_e$的关系. \\
+For any estimator $\hat{X}$ such that $X\to Y\to \hat{X}$, $p_e=P(\hat{X}\neq X)$, then
+$$H(p_e)+p_e\log\left|\mathcal{X}\right|\geq H(X|\hat{X})\geq H(X|Y)$$
+It could be weakened to:
+$$1+p_e\log\left|\mathcal{X}\right|\geq H(X|\hat{X})\geq H(X|Y)$$
+or
+$$p_e\geq \frac{H(X|Y)-1}{\log\left|\mathcal{X}\right|}$$
+\end{definition}
+
+Proof: \\
+Let $E$ be the auxiliary variable indicate where the prediction is correct. i.e.
+$$E=\begin{cases}
+    1, & \text{if } \hat{X}\neq X \\
+    0, & \text{if } \hat{X}=X
+\end{cases}$$
+Then we have $p(E=1)=p_e$, so
+\begin{align*}
+H\left(E,X|\hat{X}\right) &= \underbrace{H\left(E|\hat{X}\right)}_{\leq H(p_e)}+\underbrace{H\left(X|E,\hat{X}\right)}_{\leq p_e\log\left|\mathcal{X}\right|} \\
+&= H\left(X|\hat{X}\right)+\underbrace{H\left(E|X,\hat{X}\right)}_{=0}
+\end{align*}
+其中由于$E=\mathbb{I}_{X=\hat{X}}$, 所以$H\left(E|X,\hat{X}\right)=0$. \\
+由于conditioning reduces entropy, 所以 $H\left(E|\hat{X}\right)\leq H(E)=H(p_e)$. \\
+同时有当$E=1$时, 给定$\hat{X}$, $X$的取值共有$\left|\mathcal{X}\right|-1$种, 所以有:
+\begin{align*}
+H\left(X|E, \hat{X}\right) &= \sum_{e=0,1}H\left(X|E=e, \hat{X}\right)P(E=e) \\
+&\leq p_e\log\left(\left|\mathcal{X}\right|-1\right) + (1-p_e)\cdot 0 \\
+&\leq p_e\log\left|\mathcal{X}\right|
+\end{align*}
+综上, 可以得到 Fano's Inequality:
+$$H(p_e)+p_e\log\left|\mathcal{X}\right|\geq H(X|\hat{X})$$
+weakened to的版本可由$H\left(p_e\right)\leq 1$, 以及数据处理不等式得到:
+$$I(X;Y)\geq I(X;\hat{X})\Rightarrow H(X)-H(X|Y)\geq H(X)-H(X|\hat{X})\Rightarrow H(X|\hat{X})\geq H(X|Y)$$
+
+由于 Channel encoding 满足Markov chain $W\to X^n(W)\to Y^n\to \hat{W}$, 所以应用Fano's Inequality:
+$$H(W|\hat{W})\leq H(p_e^{(n)})+p_e^{(n)}\log\left|\mathcal{W}\right|$$
+其中$\mathcal{W}=\left\{1,\ldots,2^{nR}\right\}$, 所以 $\left|\mathcal{W}\right|=2^{nR}\Rightarrow \log\left|\mathcal{W}\right|=nR$, 由于$W$是等概率产生的, 所以$H(W)= \log\left|\mathcal{W}\right| = nR$. 所以有
+\begin{align*}
+nR &= H(W) \\
+&= H(W|\hat{W}) + I(W;\hat{W}) \qquad\qquad\quad \text{(definition of mutual information)} \\
+&\leq H(p_e^{(n)})+p_e^{(n)} nR + I(W;\hat{W}) \qquad \text{(Fano's Inequality)} \\
+&\leq 1 + p_e^{(n)}nR + nC \qquad \text{($I(W;\hat{W})\leq I(X^n;Y^n)\leq nC$ proved in zero-error code part)} \\
+\Rightarrow R &\leq \dfrac{1}{n} + p_e^{(n)}R + C \\
+\Rightarrow p_e^{(n)} &\geq 1 - \dfrac{C}{R} - \dfrac{1}{nR}
+\end{align*}
+
+取等条件: $W,\hat{W}$ 无信息丢失(zero-error code), i.e. $X^n=f(W), Y^n=g(X^n)$是$W$的充分统计量, $W$到$\hat{W}$是一对一的映射. 由充分统计量(s.s.), 此时可以看作构成 Markov Chain:
+\begin{align*}
+W \to X^n \to Y^n \to \hat{W} \\
+W \to \hat{W} \to X^n \to Y^n
+\end{align*}
+
+由于我们的前提假设是 $R>C$, 且 $R,C$ 为常数, 所以 $\dfrac{C}{R}<1$, 是常数. 当$n\to\infty$时, $\dfrac{1}{nR}\to 0<\epsilon$, 所以 $p_e^{(n)}\geq 1-\text{(constant less than $1$)} - \epsilon \not\to 0$.
+
+所以我们证明了 $\forall R>C, p_e^{(n)}\not\to 0$, 即证明了converse proof.

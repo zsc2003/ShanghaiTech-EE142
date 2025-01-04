@@ -1,0 +1,32 @@
+\section{AEP for Continous Random Variables}
+$h(X)$ 可正可负, 且越大 $X$的不确定度越大. 如何用负值衡量不确定度? 需要用AEP解释.
+
+\begin{theorem}
+$x_1,\ldots,x_n\stackrel{i.i.d.}{\sim} f(x)$, then
+$$-\dfrac{1}{n}\log f(x_1,\ldots,x_n)\to \mathbb{E}\left(-\log f(x)\right)=h(f) \text{ in probability}$$
+\end{theorem}
+
+\begin{definition}
+$x_1,\ldots,x_n$ is a typical sequence if
+$$2^{-n(h(f)+\epsilon)}\leq f(x_1,\ldots,x_n)\leq 2^{-n(h(f)-\epsilon)}$$
+\end{definition}
+
+\begin{definition}
+$A_{\epsilon}^n(f(x))$ is a typical set, then
+$$A_{\epsilon}^n(f_x)=\left\{(x_1,\ldots,x_n) \mid \left|-\dfrac{1}{n}\log f(x_1,\ldots,x_n)-h(f)\right|\leq \epsilon\right\}$$
+Where $f(x^n)=\prod\limits_{i=1}^n f(x_i)$
+\end{definition}
+
+离散型随机变量用$\left|A_{\epsilon}^n(P_X)\right|$来描述typical set的大小。 连续型随机变量将typical set的区域看作是一个正方体, 其大小用$\Vol\left(A_{\epsilon}^n(f_X)\right)$来描述, 看作是体积:
+$$\Vol\left(A_{\epsilon}^n(f_X)\right)=\int_{A_{\epsilon}^n(f_X)}\dx^n$$
+
+\begin{proposition}
+1. $\Pr\left(A_{\epsilon}^n(f_X)\right) > 1-\epsilon$ as $n$ is sufficiently large. \\
+2. $(1-\epsilon)2^{n\left(h(f)-\epsilon\right)} \leq \Vol\left(A_{\epsilon}^n(f_X)\right)\leq 2^{n\left(h(f)+\epsilon\right)}$
+\end{proposition}
+
+则正方体的边长 $d$ 为:
+$$d^n = \Vol\left(A_{\epsilon}^n(f_X)\right) = 2^{nh(f)} \Rightarrow d=2^{h(f)}$$
+用$d$来衡量$X$的不确定度. $d\geq 0$, $d$越大, $X$的不确定度越大. $d=0$时, $X$的不确定度为$0$.
+
+$h(X_1)=-1,h(X_2)=0$, $X_2$的不确定度大于$X_1$. 但用$d$衡量更直观一些, i.e. $d(X_2)>d(X_1)>0$.

@@ -1,0 +1,80 @@
+\section{Variance Limited Variable's Entropy}
+
+1. Entropy of a multivariate normal distribution: \\
+$X_1,\ldots,X_n \sim \mathcal{N}_n(\bmu,\bK)$, then $h\left(\mathcal{N}_n(\bmu,\bK)\right)=\dfrac{1}{2}\log\left((2\pi e)^n|\bK|\right)$ bits. \\
+proof: \\
+Since $f(\bx)=\dfrac{1}{\left(\sqrt{2\pi}\right)^n|\bK|^{\frac{1}{2}}}\exp\left(-\dfrac{1}{2}(\bx-\bmu)^{\top}\bK^{-1}(\bx-\bmu)\right)$, we have
+\begin{align*}
+h(f) &= -\int f(\bx)\ln f(\bx)\dbx \\
+&= -\int f(\bx)\left[\ln\left(\dfrac{1}{\left(\sqrt{2\pi}\right)^n|\bK|^{\frac{1}{2}}}\right)-\dfrac{1}{2}(\bx-\bmu)^{\top}\bK^{-1}(\bx-\bmu)\right]\dbx \\
+&= \dfrac{1}{2} \mathbb{E}_{\bx\sim f(\bx)} \left[\sum_{i, j}\left(X_i-\mu_i\right)\left(\bK^{-1}\right)_{i j}\left(X_j-\mu_j\right)\right]+ \dfrac{1}{2}\left( \ln (2 \pi)^n|\bK|\right) \\
+&= \dfrac{1}{2} \mathbb{E}_{\bx\sim f(\bx)} \left[\sum_{i, j}\left(X_i-\mu_i\right)\left(X_j-\mu_j\right)\left(\bK^{-1}\right)_{i j}\right]+ \dfrac{1}{2}\left( \ln (2 \pi)^n|\bK|\right) \\
+&= \dfrac{1}{2} \sum_{i, j} \underbrace{\mathbb{E}_{\bx\sim f(\bx)} \left[\left(X_j-\mu_j\right)\left(X_i-\mu_i\right)\right]}_{\Cov(X_i,X_j)=\bK_{ij}} \left(\bK^{-1}\right)_{i j}+ \dfrac{1}{2}\left( \ln (2 \pi)^n|\bK|\right) \\
+&= \dfrac{1}{2} \sum_j \sum_i \bK_{j i}\left(K^{-1}\right)_{i j}+ \dfrac{1}{2}\left( \ln (2 \pi)^n|\bK|\right) \\
+&= \dfrac{1}{2} \sum_j\left(\bK \bK^{-1}\right)_{j j}+ \dfrac{1}{2}\left( \ln (2 \pi)^n|\bK|\right) \\
+&= \dfrac{1}{2} \sum_j I_{j j}+ \dfrac{1}{2}\left( \ln (2 \pi)^n|\bK|\right) \\
+&= \dfrac{n}{2}+ \dfrac{1}{2}\left( \ln (2 \pi)^n|\bK|\right) \\
+&= \dfrac{1}{2} \ln (2 \pi e)^n|\bK| \quad \text { nats }
+\end{align*}
+
+2. Mutual information of two Gaussian random variables: \\
+Let $(X,Y)\sim\mathcal{N}(\mathbf{0},\bK)$, where $\bK=\left[\begin{array}{lr}\sigma^2 & \rho \sigma^2 \\ \rho \sigma^2 & \sigma^2 \end{array}\right]$, $\rho\in[-1,1]$. \\
+Then $h(X)=h(Y)=\dfrac{1}{2} \log \left(2 \pi e \sigma^2\right)$, $h(X, Y)=\dfrac{1}{2} \log \left((2 \pi e)^2|\bK|\right) = \dfrac{1}{2} \log \left((2 \pi e)^2 \sigma^4\left(1-\rho^2\right) \right)$
+$$I(X ; Y)=h(X)+h(Y)-h(X, Y)=-\dfrac{1}{2} \log \left(1-\rho^2\right)$$
+If $\rho=0$, $I(X;Y)=0\Rightarrow X\perp Y$. \\
+If $\rho= \pm 1, X$ and $Y$ are perfectly correlated and $I(X;Y)=+\infty$. \\
+\textcolor{red}{$\rho$刻画\textbf{线性}相关性. Gaussian 不相关=独立!!}
+
+3. Given $\mathbb{E}(\mathbf{X})=\bmu$, $\Cov(\mathbf{X})=\bK$. Then $h(\mathbf{X}) \leq \dfrac{1}{2}\log\left((2\pi e)^n|\bK|\right)$ bits, iff $\mathbf{X}\sim\mathcal{N}_n(\bmu,\bK)$. \\
+令 $g(\bx)$ 是任意一个满足上述条件的PDF, $\phi(\bx)$是$\mathcal{N}_n(\bmu,\bK)$的PDF, 则 \\
+Lemma: $\mathbb{E}_{\mathbf{X}\sim g(\bx)}\left(\ln (\mathbf{X})\right)=\mathbb{E}_{\mathbf{X}\sim \phi(\bx)}\left(\ln (\mathbf{X})\right)$, i.e. $\int g(\bx)\ln \phi(\bx)\dbx=\int \phi(\bx)\ln \phi(\bx)\dbx$. \\
+Since $\ln \phi(\bx) = -\dfrac{1}{2} \ln \left((2\pi)^n|\bK| \right) - \dfrac{1}{2} (\bx - \bmu)^{\top} \bK^{-1} (\bx - \bmu)$, so
+$$\ln \phi(\bx) = -\dfrac{1}{2} \ln \left((2\pi)^n|\bK| \right) - \dfrac{1}{2} (\bx - \bmu)^{\top} \bK^{-1} (\bx - \bmu)$$
+$$\mathbb{E}_{\mathbf{X}\sim g(\bx)}\left[ \ln \phi(\bx) \right] = -\dfrac{1}{2} \ln \left((2\pi)^n|\bK| \right) - \dfrac{1}{2} \mathbb{E}_{\mathbf{X}\sim g(\bx)}\left[ (\bx - \bmu)^{\top} \bK^{-1} (\bx - \bmu) \right]$$
+关于二次型的期望, 有:
+\begin{align*}
+\mathbb{E}_{\mathbf{X}\sim g(\bx)}\left[ (\bx - \bmu)^{\top} \bK^{-1} (\bx - \bmu) \right] &= \mathbb{E}_{\mathbf{X}\sim g(\bx)}\left[ \Tr\left((\bx - \bmu)^{\top} \bK^{-1} (\bx - \bmu)\right) \right] \\
+&= \mathbb{E}_{\mathbf{X}\sim g(\bx)}\left[ \Tr\left( \bK^{-1} (\bx - \bmu)(\bx - \bmu)^{\top} \right) \right] \\
+&= \Tr\left(\mathbb{E}_{\mathbf{X}\sim g(\bx)}\left[\bK^{-1} (\bx - \bmu)(\bx - \bmu)^{\top}\right] \right) \\
+&= \Tr\left(\bK^{-1}\mathbb{E}_{\mathbf{X}\sim g(\bx)}\left[ (\bx - \bmu)(\bx - \bmu)^{\top}\right] \right) \\
+&= \Tr\left(\bK^{-1}\bK \right) \\
+&= \Tr\left(I_d \right) \\
+&= n
+\end{align*}
+为一个常数, 所以有
+$$\mathbb{E}_{\mathbf{X}\sim g(\bx)}\left[ \ln \phi(\bx) \right] = \mathbb{E}_{\mathbf{X}\sim \phi(\bx)}\left[ \ln \phi(\bx) \right]$$
+i.e.
+$$\int g(\bx)\ln \phi(\bx)\dbx=\int \phi(\bx)\ln \phi(\bx)\dbx$$
+
+有了Lemma, 结合KL散度, 我们就可以证明结论了:
+\begin{align*}
+0 &\geq -D\left(g\|\phi\right) \\
+&= -\int g(\bx)\ln\left(\dfrac{g(\bx)}{\phi(\bx)}\right)\dbx \\
+&= \int g(\bx)\ln \phi(\bx)\dbx - \int g(\bx)\ln g(\bx)\dbx \\
+&= \int \phi(\bx)\ln \phi(\bx)\dbx - \int g(\bx)\ln g(\bx)\dbx \qquad \text{(Lemma)} \\
+&= -h(\phi) + h(g) \qed
+\end{align*}
+
+4. variance limitied
+由3. 的证明过程可知, 并没有用到他们均值相同的性质, 所以更一般的结论是: \\
+<1>. Given $\Var(\mathbf{X})=\bK$, then $h(\mathbf{X}) \leq \dfrac{1}{2}\log\left((2\pi e)^n|\bK|\right)$ bits, iff $\mathbf{X}\sim\mathcal{N}_n(\mathbf{0},\bK)$. \\
+<2>. 若给定均值$\mu$, 且support为$[0, +\infty)$, 则当指数分布$f(x)=\dfrac{1}{\mu}e^{-\frac{x}{\mu}}$时熵最大(似乎可以用变分的Lagrangian证明). \\
+<3>. 若均值和方差均没有限制, support有区间限制, 则均匀分布熵最大.
+
+5. Estimation error and dofferential entropy. \\
+对于分布$X$, 以及他的estimator $\hat{X}$, 则有
+$$\mathbb{E}\left[\left(\hat{X}-X\right)^2\right]\geq \dfrac{1}{2\pi e}e^{2h(X)}$$
+proof:
+$$\mathbb{E}\left[\left(\hat{X}-X\right)^2\right] \geq \min_{\hat{X}}\mathbb{E}\left[\left(\hat{X}-X\right)^2\right] = \mathbb{E}\left[\left(\mathbb{E}(X)-X\right)^2\right]=\Var(X)\geq \dfrac{1}{2\pi e}e^{2h(X)}$$
+第一个不等式: MMSE的最优解. \\
+第二个不等式: 当方差为$\sigma^2$时, $h(X)\leq \dfrac{1}{2}\log(2\pi e \sigma^2) \Rightarrow \sigma^2\geq \dfrac{1}{2\pi e}e^{2h(X)}$. \\
+Insight: $X$ 越不确定, $h(X)$ 越大, 凭空猜 $\hat{X}$ 的误差越大.
+
+推论: $X$ 有一个观测 $\hat{X}(Y)$, 则
+$$\mathbb{E}\left[\left(\hat{X}(Y)-X\right)^2\right]\geq \dfrac{1}{2\pi e}e^{2h(X;Y)}$$
+要想让MSE尽可能小, 则需要让 $h(X|Y)\to -\infty$, i.e. 观测和真实值之间没有不确定度.
+
+Recall: 观测值为$Y$, 真实值为$X$, 则 \\
+MMSE: $\mathbb{E}(Y|X)$ \\
+LLSE: $L[Y|X]=\mathbb{E}(Y)+\dfrac{\Cov(X,Y)}{\Var(X)}(X-\mathbb{E}(X))$ \\
+$X, Y$ 为联合高斯时, LLSE=MMSE.

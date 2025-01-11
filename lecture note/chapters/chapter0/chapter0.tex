@@ -1,0 +1,48 @@
+\chapter{Summary}
+
+
+\begin{tikzpicture}[
+    every node/.style={rectangle, draw, align=center},
+    arrow/.style={-Stealth}
+]
+\centering
+\footnotesize
+\node (AEP) {Asymptotic \\ Equipartition \\ Property};
+\node (discrete) [above left=15pt and 30pt of AEP] {Discrete Entropy, \\ Mutual Information};
+\node (sourceencoding) [left=52pt of AEP] {Source \\ Encoding};
+\node (channelencoding) [below left=15pt and 52pt of AEP] {Channel \\ Encoding};
+
+\node (continuous) [above right=15pt and 30pt of AEP] {Continuous Entropy, \\ Mutual Information};
+\node (quantatization) [right=43pt of AEP] {Quantatization};
+\node (Gaussianchannel) [below right=15pt and 57pt of AEP] {Gaussian \\ Channel};
+
+\draw [arrow] (discrete) -- (AEP);
+\draw [arrow] (continuous) -- (AEP);
+\draw [arrow] (AEP) -- (channelencoding);
+\draw [arrow] (AEP) -- (sourceencoding);
+\draw [arrow] (AEP) -- (Gaussianchannel);
+\draw [arrow] (AEP) -- (quantatization);
+\draw [arrow] (discrete) -- (sourceencoding);
+\draw [arrow] (sourceencoding) -- (channelencoding);
+\draw [arrow] (continuous) -- (quantatization);
+\draw [arrow] (quantatization) -- (Gaussianchannel);
+\end{tikzpicture}
+
+A.E.P. 将所有的章节连接起来.
+
+主要围绕香农三大定理展开: (注意成立的条件! 所有事情要满足其条件才行!)
+\begin{enumerate}
+\item Lossless Source Coding Theorem (\textcolor{red}{前提: $x^n\stackrel{i.i.d.}{\sim} p(x)$})
+$$L^* = H(X)$$
+
+\item Channel Coding Theorem (\textcolor{red}{前提: Memoryless Channel})
+$$C^* = \max_{p(x)}I(X;Y)$$
+
+\item Rate Distortion Theorem (\textcolor{red}{前提: $x^n\stackrel{i.i.d.}{\sim} p(x)$})
+$$R(D) = \min_{p(x), \mathbb{E}(X)\leq p^2}I(X;\hat{X})$$
+\end{enumerate}
+
+Some interesting topics but not covered in class:
+$\S 11.3$ Universal Source Coding, $\S 11.10$ Fisher Information, $\S 15.10$ General Multiterminal Networks.
+
+$\ldots\ldots\ldots\ldots$ A lot of interesting topics $\ldots\ldots\ldots\ldots$

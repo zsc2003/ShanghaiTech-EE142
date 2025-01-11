@@ -6,7 +6,7 @@ $$\sum_{x\in\mathcal{X}}2^{-l(x)}\leq 1$$
 \end{theorem}
 
 Proof: 将所有codebook中的 $01$ binary sequence 转成数字:
-$$\left(y_1\ldots y_l\right)_2\to \left(\sum\limits_{m=1}^ly_m2^{-m}\right)_{10}\in[0,1)$$
+$$(0.c(x))=\left(0.y_1\ldots y_l\right)_2\to \left(\sum\limits_{m=1}^ly_m2^{-m}\right)_{10}\in[0,1)$$
 Prefix-free 可以保证不存在 $\left(y_1\ldots y_l000\cdots\right)\sim\left(y_1\ldots y_l111\cdots\right)$ 之间的所有情况. 这个区间的code转换成的数字对应范围为
 $$\left[\sum_{m=1}^ly_m2^{-m},\sum_{m=1}^ly_m2^{-m}+\sum_{i=l+1}^{+\infty}2^{-i}\right)=\left[\sum_{m=1}^ly_m2^{-m},\sum_{m=1}^ly_m2^{-m}+2^{-l}\right)$$
 即占据一段长度为$2^{-l(x)}$的左闭右开的区间. prefix-free的code对应的区间必然没有overlap, 即
@@ -34,7 +34,7 @@ Lagrange function
 \Rightarrow p_i &= 2^{-l_i}
 \end{align*}
 所以在忽略码字长度必须为整数的限制时, 最优的码字长度为$-\log p_i$, 且
-$$\overline{L}_{\min} = \sum_{x}p(x)l(x)=\sum_{x}p(x)\log {1}{p(x)} = H(X)$$
+$$\overline{L}_{\min} = \sum_{x}p(x)l(x)=\sum_{x}p(x)\log \dfrac{1}{p(x)} = H(X)$$
 所以$H(X)$有了新的物理意义: 对 source code 进行压缩之后的最优期望码长.
 
 现在考虑加上整数限制的情况:

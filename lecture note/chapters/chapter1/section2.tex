@@ -135,13 +135,13 @@ D\left(p(x,y)\|q(x,y)\right) &= \sum_{x,y}p(x,y)\log\dfrac{p(x,y)}{q(x,y)} \\
 &= \sum_{x,y}p(x,y)\log\dfrac{p(x)}{q(x)} + \sum_{x,y}p(x,y)\log\dfrac{p(y|x)}{q(y|x)} \\
 &= D\left(p(x)\|q(x)\right) + D\left(p(y|x)\|q(y|x)\right)
 \end{align*}
-$$\Rightarrow D\left(p(x_1,x_2,\cdots,x_n)\|q(x_1,x_2,\cdots,x_n)\right)=\sum_{i=1}^{n}D\left(p(x_i)\|q(x_i)\right)$$
+$$\Rightarrow D\left(p(x_1,x_2,\cdots,x_n)\|q(x_1,x_2,\cdots,x_n)\right)=\sum_{i=1}^{n}D\left(p(x_i|x_1,\ldots,x_{i-1})\|q(x_i|x_1,\ldots,x_{i-1})\right)$$
 
 
 2. Mutual Information $\Rightarrow$ Conditional Mutual Information:\\
 $I(X;Y|Z)$: given $Z$, $X$,$Y$的互信息.
 \begin{align*}
-    I(X;Y|Z) &= H(Y;X|Z) \\
+    I(X;Y|Z) &= I(Y;X|Z) \\
     &= H(X|Z) - H(X|Y,Z) \\
     &= H(Y|Z) - H(Y|X,Z)
 \end{align*}

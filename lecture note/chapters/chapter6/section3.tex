@@ -71,7 +71,7 @@ $$\mathbb{E}\left[\left(\hat{X}-X\right)^2\right] \geq \min_{\hat{X}}\mathbb{E}\
 Insight: $X$ 越不确定, $h(X)$ 越大, 凭空猜 $\hat{X}$ 的误差越大.
 
 推论: $X$ 有一个观测 $\hat{X}(Y)$, 则
-$$\mathbb{E}\left[\left(\hat{X}(Y)-X\right)^2\right]\geq \dfrac{1}{2\pi e}e^{2h(X;Y)}$$
+$$\mathbb{E}\left[\left(\hat{X}(Y)-X\right)^2\right]\geq \dfrac{1}{2\pi e}e^{2h(X|Y)}$$
 要想让MSE尽可能小, 则需要让 $h(X|Y)\to -\infty$, i.e. 观测和真实值之间没有不确定度.
 
 Recall: 观测值为$Y$, 真实值为$X$, 则 \\

@@ -71,19 +71,17 @@ D\left(p\|u\right) &= \sum_{x\in\mathcal{X}}p(x)\log\dfrac{p(x)}{u(x)} \\
 \end{definition}
 
 \begin{theorem}
-    chain rule 剥洋葱:
-    $$H(X,Y)=H(X)+H(Y|X)$$
+    chain rule 剥洋葱: $H(X,Y)=H(X)+H(Y|X)$
 \end{theorem}
-
 
 \begin{example}
 Find $H(X), H(Y), H(X|Y), H(X,Y)$.
-\begin{table*}[!htbp]
+\begin{table*}[htbp]
     \centering
     \begin{tabular}{|c|c|c|c|c|}
         \hline \diagbox{$Y$}{$X$} & $1$ & $2$ & $3$ & $4$  \\
         \hline $1$ & $\frac{1}{8}$ & $\frac{1}{16}$ & $\frac{1}{32}$ & $\frac{1}{32}$ \\
-        \hline $2$ & $\frac{1}{32}$ & $\frac{1}{32}$ & $\frac{1}{32}$ & $\frac{1}{32}$ \\
+        \hline $2$ & $\frac{1}{16}$ & $\frac{1}{8}$ & $\frac{1}{32}$ & $\frac{1}{32}$ \\
         \hline $3$ & $\frac{1}{16}$ & $\frac{1}{16}$ & $\frac{1}{16}$ & $\frac{1}{16}$ \\
         \hline $4$ & $\frac{1}{4}$  & 0 & 0 & 0 \\
         \hline

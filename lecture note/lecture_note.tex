@@ -1,0 +1,54 @@
+\documentclass[12pt, a4paper, oneside]{ctexbook}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, diagbox, color, tikz}
+\usetikzlibrary{positioning, arrows.meta}
+
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\dx}{\operatorname{dx}}
+\newcommand{\dt}{\operatorname{dt}}
+\newcommand{\dbx}{\operatorname{d}\mathbf{x}}
+\newcommand{\dy}{\operatorname{dy}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\bmu}{\bm{\mu}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\Tr}{\text{Tr}}
+
+\title{{\Huge{\textbf{EE142 \\ Fundamentals of Information Theory}}}\\Lecture notes}
+\author{Zhou Shouchen\\ 2021533042 \\ \href{https://github.com/zsc2003/ShanghaiTech-EE142}{\LaTeX{} source code on GitHub}}
+\date{\today}
+\linespread{1.4}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{example}[theorem]{例}
+\newtheorem{proposition}[theorem]{命题}
+
+\begin{document}
+
+\maketitle
+
+% -------------------- chapters --------------------
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\input{chapters/chapter0/chapter0.tex}
+\input{chapters/chapter1/chapter1.tex}
+\input{chapters/chapter2/chapter2.tex}
+\input{chapters/chapter3/chapter3.tex}
+\input{chapters/chapter4/chapter4.tex}
+\input{chapters/chapter5/chapter5.tex}
+\input{chapters/chapter6/chapter6.tex}
+\input{chapters/chapter7/chapter7.tex}
+\input{chapters/chapter8/chapter8.tex}
+\input{chapters/chapter9/chapter9.tex}
+
+\input{chapters/Appendix/Appendix.tex}
+% -------------------- chapters --------------------
+
+\end{document}
